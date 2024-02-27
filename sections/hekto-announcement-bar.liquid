@@ -1,0 +1,118 @@
+<style>
+  *,
+  *:before,
+  *:after {
+    box-sizing: border-box;
+  }
+  /* .page-width {
+    max-width: 120rem;
+    margin: 0 5rem;
+  } */
+  .flex {
+    display: flex;
+    gap: 10px;
+  }
+
+  .border {
+    border: 1px solid black;
+  }
+  .announcement-message {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    border: 1px solid black;
+    width: 100%;
+    min-height: 44px;
+  }
+  .contacts {
+    align-items: center;
+  }
+
+  /* .options {
+    align-items: center;
+  } */
+
+  .options > a {
+    text-decoration: none;
+    color: #f1f1f1;
+    display: flex;
+    align-items: center;
+    gap: 2.5px;
+  }
+  select {
+    background: none;
+    color: #ffffff;
+    border: 0;
+  }
+</style>
+
+<div class="announce-bar color-{{section.settings.color_scheme}}">
+  <div class="announcement-message">
+    <div class="contacts flex">
+      {% render 'icons', icon: 'email' %}
+      <span>
+        {{ section.settings.email | escape -}}
+      </span>
+      {% render 'icons', icon: 'phone' %}
+      <span>{{ section.settings.phone | escape }}</span>
+    </div>
+    <div class="options flex">
+      <select name="language" id="language">
+        <option value="en">English</option>
+        <option value="fr">French</option>
+      </select>
+      <select name="currency" id="currency">
+        <option value="usd">USD</option>
+        <option value="euro">EUR</option>
+      </select>
+      <a href="#">
+        <span>Login </span>
+        {% render 'icons', icon: 'user' %}
+      </a>
+
+      <a href="#">
+        <span>Wishlist </span>
+        {% render 'icons', icon: 'favorite' %}
+      </a>
+      <a href="/cart">
+        {% render 'icons', icon: 'cart' %}
+      </a>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Hekto Announcement",
+  "class": "hekto-announcement-section",
+  "enabled_on": {
+    "groups": ["header"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color",
+      "default": "scheme-5"
+    },
+    {
+      "type": "text",
+      "id": "email",
+      "default": "johndoe@example.com",
+      "label": "Your Email"
+    },
+    {
+      "type": "text",
+      "id": "phone",
+      "default": "(12345)67890",
+      "label": "Phone Number"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hekto Announcement Bar"
+    }
+  ]
+}
+{% endschema %}
