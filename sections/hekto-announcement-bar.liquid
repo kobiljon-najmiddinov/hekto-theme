@@ -17,16 +17,29 @@
     border: 1px solid black;
   }
   .announcement-message {
+    font-family: var(--ff-sans);
+    color: hsl (var(--clr-white) / 1);
     display: flex;
     justify-content: space-around;
     align-items: center;
     flex-wrap: wrap;
-    border: 1px solid black;
     width: 100%;
     min-height: 44px;
   }
   .contacts {
     align-items: center;
+    justify-content: space-between;
+    gap: 50px;
+  }
+
+  .contacts > a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .email-info {
+    margin-right: 50px;
   }
 
   /* .options {
@@ -35,37 +48,40 @@
 
   .options > a {
     text-decoration: none;
-    color: #f1f1f1;
+    color: inherit;
     display: flex;
     align-items: center;
     gap: 2.5px;
   }
   select {
     background: none;
-    color: #ffffff;
     border: 0;
+  }
+
+  @media screen and (max-width: 750px) {
+    .email-info {
+      display: none;
+    }
+    .phone-number {
+      display: none;
+    }
   }
 </style>
 
 <div class="announce-bar color-{{section.settings.color_scheme}}">
   <div class="announcement-message">
     <div class="contacts flex">
-      {% render 'icons', icon: 'email' %}
-      <span>
-        {{ section.settings.email | escape -}}
-      </span>
-      {% render 'icons', icon: 'phone' %}
-      <span>{{ section.settings.phone | escape }}</span>
+      <a href="mailto:{{ section.settings.email | escape -}}">
+        {% render 'icons', icon: 'email' %}
+        <span class="email-info"> {{ section.settings.email | escape -}}</span>
+      </a>
+
+      <a href="tel:{{ section.settings.phone | escape }}">
+        {% render 'icons', icon: 'phone' %}
+        <span class="phone-number">{{ section.settings.phone | escape }}</span>
+      </a>
     </div>
     <div class="options flex">
-      <select name="language" id="language">
-        <option value="en">English</option>
-        <option value="fr">French</option>
-      </select>
-      <select name="currency" id="currency">
-        <option value="usd">USD</option>
-        <option value="euro">EUR</option>
-      </select>
       <a href="#">
         <span>Login </span>
         {% render 'icons', icon: 'user' %}

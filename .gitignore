@@ -1,2 +1,5 @@
 config.yml
 node_modules
+
+/assets/*.min.js
+/assets/*.min.css
