@@ -3,11 +3,13 @@
         "browser": true,
         "es2021": true
     },
-    "extends": ["airbnb", "prettier"],
-    "plugins": ["prettier"],
+    "extends": "eslint:recommended",
+    "parserOptions": {
+        "ecmaVersion": "latest",
+        "sourceType": "module"
+    },
     "rules": {
-        "no-unused-vars":"warn",
-        "no-console":"warn",
-        "func-names":"off"
+        "semi": ["error", "always"],
+        "quotes": ["error", "double"]
     }
 }

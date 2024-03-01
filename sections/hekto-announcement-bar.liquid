@@ -1,51 +1,27 @@
 <style>
-  *,
-  *:before,
-  *:after {
-    box-sizing: border-box;
-  }
-  /* .page-width {
-    max-width: 120rem;
-    margin: 0 5rem;
-  } */
-  .flex {
-    display: flex;
-    gap: 10px;
-  }
-
-  .border {
-    border: 1px solid black;
-  }
   .announcement-message {
     font-family: var(--ff-sans);
-    color: hsl (var(--clr-white) / 1);
+    color: var(--color-tertiary-text);
     display: flex;
-    justify-content: space-around;
     align-items: center;
-    flex-wrap: wrap;
     width: 100%;
-    min-height: 44px;
+    padding: 2rem 5rem;
+    margin: auto;
   }
   .contacts {
     align-items: center;
-    justify-content: space-between;
     gap: 50px;
   }
 
   .contacts > a {
     display: flex;
     align-items: center;
-    gap: 10px;
+    margin-right: 10px;
   }
 
-  .email-info {
-    margin-right: 50px;
+  .contacts span {
+    margin-left: 10px;
   }
-
-  /* .options {
-    align-items: center;
-  } */
-
   .options > a {
     text-decoration: none;
     color: inherit;
@@ -58,7 +34,20 @@
     border: 0;
   }
 
+  .working-hours {
+    margin-left: auto;
+  }
+
   @media screen and (max-width: 750px) {
+    .announcement-message {
+      font-size: 24px;
+      padding: 2rem 3.2rem;
+    }
+    .contacts svg {
+      width: 24px;
+      height: 24px;
+    }
+
     .email-info {
       display: none;
     }
@@ -68,33 +57,19 @@
   }
 </style>
 
-<div class="announce-bar color-{{section.settings.color_scheme}}">
-  <div class="announcement-message">
+<div class=" color-{{section.settings.color_scheme}}">
+  <div class="announcement-message page--width">
     <div class="contacts flex">
       <a href="mailto:{{ section.settings.email | escape -}}">
         {% render 'icons', icon: 'email' %}
         <span class="email-info"> {{ section.settings.email | escape -}}</span>
       </a>
-
       <a href="tel:{{ section.settings.phone | escape }}">
         {% render 'icons', icon: 'phone' %}
         <span class="phone-number">{{ section.settings.phone | escape }}</span>
       </a>
     </div>
-    <div class="options flex">
-      <a href="#">
-        <span>Login </span>
-        {% render 'icons', icon: 'user' %}
-      </a>
-
-      <a href="#">
-        <span>Wishlist </span>
-        {% render 'icons', icon: 'favorite' %}
-      </a>
-      <a href="/cart">
-        {% render 'icons', icon: 'cart' %}
-      </a>
-    </div>
+    <span class="working-hours">9:00 AM - 10:00 PM</span>
   </div>
 </div>
 
