@@ -1,12 +1,13 @@
-{% comment %} {{ 'global.min.css' | asset_url | stylesheet_tag }} {% endcomment %}
-
 <style>
     .navigation {
         color: var(--color-primary-text);
-        /* flex-wrap: wrap; */
+        flex-wrap: wrap;
         align-items: center;
         margin: auto;
         width: 100%;
+    }
+    .navigation_menu-drawer {
+        display: none;
     }
     .header-left-items {
         display: flex;
@@ -14,8 +15,18 @@
         /* width: 50%; */
         gap: 10rem;
     }
-    .nav-inline-menu {
-        margin-left: 100px;
+    .logo-home-link {
+        margin-right: auto;
+    }
+
+    .dropdown-child,
+    .dropdown-grandchild {
+        display: grid;
+        grid-template-rows: 0fr;
+        min-height: 0;
+        border: 1px solid var(--color-tertiary-text);
+        overflow: hidden;
+        list-style-type: none;
     }
     .select-pages {
         color: var(--color-primary-text);
@@ -37,7 +48,6 @@
 
     .search-field {
         margin-left: auto;
-        /* margin-right: auto; */
     }
     .header-right-items {
         margin-left: auto;
@@ -82,52 +92,184 @@
         cursor: pointer;
     }
 
-    @media screen and (max-width: 750px) {
+    @media screen and (max-width: 990px) {
+        .overflow--hidden {
+            overflow: hidden;
+        }
+        .navigation {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            grid-template-areas: 'left-side-icons logo right-side-icons';
+            align-items: center;
+        }
+        .page--width {
+            --page-width-padding: 1rem 3.2rem;
+        }
         .favicon-nav {
             gap: 45px;
+        }
+        .logo-home-link {
+            margin: auto;
         }
 
         .nav-lists {
             flex-wrap: wrap;
             justify-content: center;
         }
+        .nav-inline-menu {
+            display: none;
+        }
+        .navigation_menu-drawer {
+            display: block;
+        }
+        .header_icons {
+            cursor: pointer;
+        }
+        .header_icons svg,
+        .header_icons path {
+            fill: var(--color-primary-text);
+        }
 
-        .search-div {
-            width: 75%;
+        .menu-drawer--icons {
+            width: 20px;
+            height: 20px;
+        }
+
+        .icon--close {
+            display: none;
+        }
+
+        .menu-drawer--content {
+            position: absolute;
+            transform: translate(-100%);
+            left: 0;
+            z-index: 3;
+            width: 40rem;
+            height: 100%;
+            margin-top: 10px;
+            background: #fff;
+            visibility: hidden;
+            overflow-x: hidden;
+            overflow-y: hidden;
+            transition: transform 400ms ease-in-out;
+        }
+        .menu-drawer--icons[data-open='true'] .icon--close {
+            display: block;
+            transform: scale(0.8);
+        }
+
+        .menu-drawer--icons[aria-expanded='true']:before {
+            content: '';
+            margin-top: 40px;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            display: block;
+            position: absolute;
+            z-index: 2;
+            background: hsl(0 0% 0% / 0.5);
+            /* transition: background 5s linear; */
+        }
+
+        .menu-drawer--content[data-open='true'] {
+            transform: translate(0);
+            visibility: visible;
+        }
+        .header_drawer-lists {
+            height: 100%;
+            flex-direction: column;
+            list-style-type: none;
+        }
+        .header-right-items a span {
+            display: none;
+        }
+
+        /* Header Right items */
+        .header-right-items {
+            --gap: 2rem;
+        }
+        .search-btn {
+            height: 32px;
+            width: 36px;
         }
     }
 </style>
 
 <div class='color-{{section.settings.color_scheme}}'>
     <div class='navigation ff-lato flex page--width '>
-        <a class='logo-home-link' href='/'>
-            {{ section.settings.image | image_url: width: 100, height: 34 | image_tag }}
-        </a>
+        <div class='navigation_menu-drawer '>
+            <div class='menu-drawer--icons' aria-expanded='false'>
+                <span class='header_icons'>
+                    {% render 'icons', icon: 'hamburger' %}
+                    {% render 'icons', icon: 'close' %}
+                </span>
+            </div>
+
+            <div class='menu-drawer--content' data-open='false'>
+                <ul class='header_drawer-lists flex '>
+                    {% for link in section.settings.menu.links %}
+                        <li>
+                            <a href='{{ link.url }}'>{{ link.title }}</a>
+                            {% if link.links.size > 0 %}
+                                <ul class='menu dropdown-child'>
+                                    {% for child_link in link.links %}
+                                        <li class='menu-link'>
+                                            <a href='{{ child_link.url }}'>{{ child_link.title }}</a>
+
+                                            {% if child_link.links.size > 0 %}
+                                                <ul class='menu dropdown-grandchild'>
+                                                    {% for grandchild_link in child_link.links %}
+                                                        <li class='menu-link'>
+                                                            <a href='{{ grandchild_link.url }}'>
+                                                                {{- grandchild_link.title -}}
+                                                            </a>
+                                                        </li>
+                                                    {% endfor %}
+                                                </ul>
+                                            {% endif %}
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        {%- if section.settings.image != null -%}
+            <a class='logo-home-link' href='/'>
+                {{ section.settings.image | image_url: width: 100, height: 34 | image_tag }}
+            </a>
+        {%- endif -%}
 
         <nav class='nav-inline-menu'>
             <ul class='nav-lists flex '>
-                <li>
-                    <select class='select-pages' name='nav-page' id='nav-page'>
-                        <option value='home'>Home</option>
-                        <option value='page'>Page</option>
-                    </select>
-                </li>
+                {% for link in section.settings.menu.links %}
+                    <li>
+                        <a href='{{ link.url }}'>{{ link.title }}</a>
+                        {% if link.links.size > 0 %}
+                            <ul class='menu dropdown-child'>
+                                {% for child_link in link.links %}
+                                    <li class='menu-link'>
+                                        <a href='{{ child_link.url }}'>{{ child_link.title }}</a>
 
-                <li>
-                    <a href='#'>Pages</a>
-                </li>
-                <li>
-                    <a href='#'>Products</a>
-                </li>
-                <li>
-                    <a href='#'>Blog</a>
-                </li>
-                <li>
-                    <a href='#'>Shop</a>
-                </li>
-                <li>
-                    <a href='#'>Contact</a>
-                </li>
+                                        {% if child_link.links.size > 0 %}
+                                            <ul class='menu dropdown-grandchild'>
+                                                {% for grandchild_link in child_link.links %}
+                                                    <li class='menu-link'>
+                                                        <a href='{{ grandchild_link.url }}'>
+                                                            {{- grandchild_link.title -}}
+                                                        </a>
+                                                    </li>
+                                                {% endfor %}
+                                            </ul>
+                                        {% endif %}
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </li>
+                {% endfor %}
             </ul>
         </nav>
         <div class='header-right-items flex'>
@@ -149,10 +291,38 @@
                 {% render 'icons', icon: 'cart' %}
             </a>
         </div>
-
-        {% comment %} <div class='favicon-nav flex'></div> {% endcomment %}
     </div>
 </div>
+
+<script>
+    const menuDrawerBtn = document.querySelector('.header_icons')
+    const menuDrawerData = document.querySelector('.menu-drawer--content')
+    const body = document.querySelector('body')
+    const drawerMenuIcons = document.querySelector('.menu-drawer--icons')
+    const closeIcon = document.querySelector('.icon--close')
+    const hamburgerIcon = document.querySelector('.icon--hamburger')
+
+    menuDrawerBtn.addEventListener('click', function () {
+        console.log(this)
+        menuDrawerData.setAttribute('data-open', menuDrawerData.dataset.open == 'false' ? 'true' : 'false')
+        let attribute = menuDrawerData.getAttribute('data-open')
+        if (attribute == 'true') {
+            body.classList.add('overflow--hidden')
+            closeIcon.style.display = 'block'
+            hamburgerIcon.style.display = 'none'
+        } else {
+            body.classList.remove('overflow--hidden')
+            closeIcon.style.display = 'none'
+            hamburgerIcon.style.display = 'block'
+        }
+        let drawerIconAttribute = drawerMenuIcons.getAttribute('aria-expanded')
+
+        let ariaAttribute = drawerIconAttribute === 'false' ? 'true' : 'false'
+        console.log(ariaAttribute)
+
+        drawerMenuIcons.setAttribute('aria-expanded', ariaAttribute)
+    })
+</script>
 
 {% schema %}
 {
@@ -166,11 +336,17 @@
             "type": "image_picker",
             "id": "image",
             "label": "Logo Image"
+        },
+        {
+            "type": "link_list",
+            "id": "menu",
+            "label": "Menu"
         }
     ],
     "presets": [
         {
-            "name": "Header Hekto"
+            "name": "Header Hekto",
+            "settings": {}
         }
     ]
 }

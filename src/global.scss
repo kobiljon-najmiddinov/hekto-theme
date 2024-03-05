@@ -171,7 +171,7 @@ select {
 
 .page--width {
     max-width: var(--page-width);
-    padding: 2rem 5rem;
+    padding: var(--page-width-padding, 1rem 5rem);
 }
 
 .page--width-fluid {
