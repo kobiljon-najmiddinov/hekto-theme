@@ -1,0 +1,326 @@
+{{ 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css' | stylesheet_tag }}
+{{ 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js' | script_tag }}
+{% comment %} {{ 'slideshow.min.js' | asset_url | script_tag }} {% endcomment %}
+<style>
+    .image--container {
+        position: relative;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding-bottom: 40%;
+        z-index: 2;
+    }
+
+    .image--container img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .swiper-pagination-bullet {
+        width: 10px;
+        height: 10px;
+        background: none;
+        border: 1px solid var(--color-primary-accent);
+        border-radius: 0;
+        opacity: 1;
+        transform: rotate(45deg);
+        --swiper-pagination-bullet-horizontal-gap: 6px;
+    }
+
+    .swiper-pagination-bullet-active {
+        background: var(--color-primary-accent);
+    }
+
+    .hero-content {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        z-index: 3;
+        margin-left: 40rem;
+    }
+
+    .desktop-banner {
+        display: block;
+    }
+
+    .mobile-banner,
+    .tablet-banner {
+        display: none;
+    }
+
+    .hero-title {
+        font-family: var(--ff-lato);
+        font-size: 16px;
+        font-weight: 700;
+        color: var(--color-primary-accent);
+        line-height: 28px;
+    }
+
+    .hero-header {
+        font-family: var(--ff-sans);
+        font-size: 53px;
+        color: #000;
+        line-height: 81.98px;
+        letter-spacing: 1.5%;
+    }
+
+    .hero-subtext {
+        font-family: var(--ff-lato);
+        font-size: 16px font-weight: 700;
+        color: var(--color-sub-text);
+        width: 80%;
+    }
+
+    .hero-texts p {
+        max-width: 65%;
+    }
+
+    .shop-btn {
+        display: flex;
+        align-self: auto;
+        justify-content: center;
+        align-items: center;
+        font-family: var(--ff-sans);
+        font-size: 17px;
+        background: var(--color-primary-accent);
+        color: #fff;
+        border-radius: 2%;
+        width: 163px;
+        height: 50px;
+        margin-top: 25px;
+    }
+    @media screen and (min-width: 1921px){
+        .hero-content {
+            margin-left: 60rem;
+        }
+    }
+
+    @media screen and (max-width: 1440px) {
+        .mobile-banner, .tablet-banner {
+            display: none;
+        }
+        .hero-content {
+            margin-left: 30rem;
+        }
+
+        .hero-title {
+            font-size: 15px;
+        }
+
+        .hero-header {
+            font-size: 48px;
+        }
+
+        .hero-subtext {
+            font-size: 15px;
+        }
+    }
+
+    @media screen and (max-width: 1200px) {
+        .image--container {
+            padding-bottom: 130%;
+        }
+        .tablet-banner {
+            display: block;
+        }
+
+        .desktop-banner,
+        .mobile-banner {
+            display: none;
+        }
+
+        .hero-content {
+            justify-content: center;
+            margin-left: 5rem;
+        }
+
+        .hero-title {
+            font-size: 14px;
+        }
+
+        .hero-header {
+            font-size: 35px;
+        }
+
+        .hero-subtext {
+            font-size: 14px;
+        }
+        .hero-texts {
+            margin-top: -20rem;
+        }
+    }
+
+    @media screen and (max-width: 767px) {
+        .image--container {
+            padding-bottom: 177%;
+        }
+        .mobile-banner {
+            display: block;
+        }
+
+        .desktop-banner,
+        .tablet-banner {
+            display: none;
+        }
+
+        .hero-content {
+            justify-content: center;
+            margin-left: 4rem;
+        }
+
+        .hero-title {
+            font-size: 12px;
+        }
+
+        .hero-header {
+            font-size: 28px;
+        }
+
+        .hero-subtext {
+            font-size: 12px;
+        }
+        .hero-texts p {
+        max-width: 95%;
+        }
+        .hero-texts {
+            margin-top: 0rem;
+        }
+
+        .shop-btn {
+            font-size: 13px;
+            width: 95px;
+        }
+    }
+</style>
+
+<div class='swiper'>
+    <div class='swiper-wrapper'>
+        <!-- Slides -->
+        {% for block in section.blocks %}
+            {% if block.settings['desktop-banner']
+                and block.settings['tablet-banner']
+                and block.settings['mobile-banner'] != blank
+            %}
+                <div class='swiper-slide'>
+                    <div class='image--container '>
+                        <div class='hero-content'>
+                            <div class='hero-texts'>
+                                <p class='hero-title'>{{ section.settings['hero-title'] }}</p>
+                                <p class='hero-header'>{{ section.settings['hero-header'] }}</p>
+                                <p class='hero-subtext'>{{ section.settings['hero-subtext'] }}</p>
+                                <div class='shop-btn'>
+                                    <a href='/pages/shop/'>Shop Now</a>
+                                </div>
+                            </div>
+                        </div>
+                        <img
+                            class='desktop-banner'
+                            src='{{ block.settings['desktop-banner'] | image_url}}'
+                            alt='Desktop Banner'
+                        >
+                        <img
+                            class='tablet-banner'
+                            src='{{ block.settings['tablet-banner'] | image_url }}'
+                            alt='Tablet Banner'
+                        >
+                        <img
+                            class='mobile-banner'
+                            src='{{ block.settings['mobile-banner'] | image_url}}'
+                            alt='Mobile Banner'
+                        >
+                    </div>
+                </div>
+            {% else %}
+                {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+            {% endif %}
+        {% endfor %}
+    </div>
+    <!-- pagination -->
+    <div class='swiper-pagination'></div>
+
+    <!-- navigation buttons -->
+    <div class='swiper-button-prev'></div>
+    <div class='swiper-button-next'></div>
+
+    <!-- scrollbar -->
+    <div class='swiper-scrollbar'></div>
+</div>
+
+<script>
+    const swiper = new Swiper('.swiper', {
+        loop: true,
+        pagination: {
+            el: '.swiper-pagination',
+        },
+    })
+</script>
+
+{% schema %}
+{
+    "name": "Banner Slideshow",
+    "tag": "section",
+    "class": "section",
+    "disabled_on": {
+        "groups": ["header", "footer"]
+    },
+    "settings": [
+        {
+            "type": "text",
+            "id": "hero-title",
+            "label": "Hero Title",
+            "default": "Best Furniture For Your Castle...."
+        },
+        {
+            "type": "text",
+            "id": "hero-header",
+            "label": "Hero Heading",
+            "default": "New Furniture Collection Trends in 2020"
+        },
+        {
+            "type": "text",
+            "id": "hero-subtext",
+            "label": "Hero Subtext",
+            "default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Magna in est adipiscing in phasellus non in justo."
+        }
+    ],
+    "blocks": [
+        {
+            "type": "slide",
+            "name": "Slides",
+            "settings": [
+                {
+                    "type": "image_picker",
+                    "id": "desktop-banner",
+                    "label": "Desktop Banner Image"
+                },
+                {
+                    "type": "image_picker",
+                    "id": "mobile-banner",
+                    "label": "Mobile Banner Image"
+                },
+                {
+                    "type": "image_picker",
+                    "id": "tablet-banner",
+                    "label": "Tablet Banner Image"
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": "Banner Slideshow",
+            "blocks": [
+                {
+                    "type": "slide"
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}

@@ -25,5 +25,8 @@
   "scripts": {
     "build": "webpack --mode=production",
     "dev": "webpack --watch --mode development"
+  },
+  "dependencies": {
+    "swiper": "^11.0.7"
   }
 }
