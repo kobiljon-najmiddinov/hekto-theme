@@ -219,21 +219,17 @@
                                 </div>
                             </div>
                         </div>
-                        <img
-                            class='desktop-banner'
-                            src='{{ block.settings['desktop-banner'] | image_url}}'
-                            alt='Desktop Banner'
-                        >
-                        <img
-                            class='tablet-banner'
-                            src='{{ block.settings['tablet-banner'] | image_url }}'
-                            alt='Tablet Banner'
-                        >
-                        <img
-                            class='mobile-banner'
-                            src='{{ block.settings['mobile-banner'] | image_url}}'
-                            alt='Mobile Banner'
-                        >
+                        <picture>
+                            <source
+                                srcset='{{ block.settings['mobile-banner'] | image_url }}'
+                                media='(max-width: 767px)'
+                            >
+                            <source
+                                srcset='{{ block.settings['tablet-banner'] | image_url }}'
+                                media='(max-width: 1200px)'
+                            >
+                            <img src='{{ block.settings['desktop-banner'] | image_url }}' alt='Banner Image'>
+                        </picture>
                     </div>
                 </div>
             {% else %}
