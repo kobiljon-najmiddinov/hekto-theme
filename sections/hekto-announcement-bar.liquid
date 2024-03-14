@@ -1,4 +1,8 @@
 <style>
+    body,
+    .color-scheme-5 {
+        background-color: var(--color-primary-background);
+    }
     .announcement-message {
         font-family: var(--ff-sans);
         color: var(--color-tertiary-text);
@@ -58,7 +62,7 @@
     }
 </style>
 
-<div class=' color-{{section.settings.color_scheme}}'>
+<div class='announcement--container color-{{section.settings.color_scheme}}'>
     <div class='announcement-message page--width'>
         <div class='contacts flex'>
             <a href='mailto:{{ section.settings.email | escape -}}'>
