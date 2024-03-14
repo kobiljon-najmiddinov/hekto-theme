@@ -87,6 +87,14 @@
         --color-badge-background: {{ scheme.settings.background.red }},{{ scheme.settings.background.green }},{{ scheme.settings.background.blue }};
         --color-badge-border: {{ scheme.settings.text.red }},{{ scheme.settings.text.green }},{{ scheme.settings.text.blue }};
         --payment-terms-background-color: rgb({{ scheme.settings.background.rgb }});
+        --color-primary-text: {{ scheme.settings.primary_text }};
+        --color-secondary-text: {{ scheme.settings.secondary_text }};
+        --color-tertiary-text: {{ scheme.settings.tertiary_text }};
+        --color-sub-text: {{ scheme.settings.sub_text }};
+        --color-caption-text: {{ scheme.settings.caption_text }};
+        --color-primary-background: {{ scheme.settings.primary_background }};
+        --color-primary-accent: {{ scheme.settings.primary_accent }};
+        --color-section-hover: {{ scheme.settings.section_hover }};
       }
       {% endfor %}
 
@@ -250,6 +258,8 @@
         }
       }
     {% endstyle %}
+
+    {{ 'global.min.css' | asset_url | stylesheet_tag }}
 
     {{ 'base.css' | asset_url | stylesheet_tag }}
 
