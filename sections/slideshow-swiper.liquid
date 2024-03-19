@@ -1,6 +1,6 @@
-{{ 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css' | stylesheet_tag }}
-{{ 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js' | script_tag }}
-{% comment %} {{ 'slideshow.min.js' | asset_url | script_tag }} {% endcomment %}
+{% comment %} {{ 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css' | stylesheet_tag }} {% endcomment %}
+{% comment %} {{ 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js' | script_tag }} {% endcomment %}
+{{ 'slideshow.min.js' | asset_url | script_tag }}
 <style>
     .image--container {
         position: relative;
@@ -199,36 +199,36 @@
     }
 </style>
 
-<div class='swiper'>
-    <div class='swiper-wrapper'>
+<div class="swiper">
+    <div class="swiper-wrapper">
         <!-- Slides -->
         {% for block in section.blocks %}
             {% if block.settings['desktop-banner']
                 and block.settings['tablet-banner']
                 and block.settings['mobile-banner'] != blank
             %}
-                <div class='swiper-slide'>
-                    <div class='image--container '>
-                        <div class='hero-content'>
-                            <div class='hero-texts'>
-                                <p class='hero-title'>{{ section.settings['hero-title'] }}</p>
-                                <p class='hero-header'>{{ section.settings['hero-header'] }}</p>
-                                <p class='hero-subtext'>{{ section.settings['hero-subtext'] }}</p>
-                                <div class='shop-btn'>
-                                    <a href='/pages/shop/'>Shop Now</a>
+                <div class="swiper-slide">
+                    <div class="image--container ">
+                        <div class="hero-content">
+                            <div class="hero-texts">
+                                <p class="hero-title">{{ section.settings['hero-title'] }}</p>
+                                <p class="hero-header">{{ section.settings['hero-header'] }}</p>
+                                <p class="hero-subtext">{{ section.settings['hero-subtext'] }}</p>
+                                <div class="shop-btn">
+                                    <a href="/pages/shop/">Shop Now</a>
                                 </div>
                             </div>
                         </div>
                         <picture>
                             <source
-                                srcset='{{ block.settings['mobile-banner'] | image_url }}'
-                                media='(max-width: 767px)'
+                                srcset="{{ block.settings['mobile-banner'] | image_url }}"
+                                media="(max-width: 767px)"
                             >
                             <source
-                                srcset='{{ block.settings['tablet-banner'] | image_url }}'
-                                media='(max-width: 1200px)'
+                                srcset="{{ block.settings['tablet-banner'] | image_url }}"
+                                media="(max-width: 1200px)"
                             >
-                            <img src='{{ block.settings['desktop-banner'] | image_url }}' alt='Banner Image'>
+                            <img src="{{ block.settings['desktop-banner'] | image_url }}" alt="Banner Image">
                         </picture>
                     </div>
                 </div>
@@ -238,14 +238,7 @@
         {% endfor %}
     </div>
     <!-- pagination -->
-    <div class='swiper-pagination'></div>
-
-    <!-- navigation buttons -->
-    <div class='swiper-button-prev'></div>
-    <div class='swiper-button-next'></div>
-
-    <!-- scrollbar -->
-    <div class='swiper-scrollbar'></div>
+    <div class="swiper-pagination"></div>
 </div>
 
 <script>
