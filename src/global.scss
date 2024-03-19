@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
 :root{
     /* color */
     --clr-white: 0 0% 95%;
@@ -16,9 +16,9 @@
     --fs-14: 0.875rem;
 
     /* font familiy*/
-    --ff-sans: "Josefin Sans";
-    --ff-lato: "Lato";
-    --ff-roboto: "Roboto";
+    --ff-sans: "Josefin Sans", sans-serif;
+    --ff-lato: "Lato", sans-serif;
+    --ff-roboto: "Roboto", sans-serif;
     
 
 }
