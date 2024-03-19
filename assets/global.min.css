@@ -1,10 +1,6 @@
 /*!**********************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/global.scss ***!
   \**********************************************************************************************************/
-@import url(https://fonts.googleapis.com/css2?family=Lato&display=swap);
-/*!**************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/global.scss (1) ***!
-  \**************************************************************************************************************/
 :root {
   /* color */
   --clr-white: 0 0% 95%;
@@ -20,8 +16,9 @@
   --fs-16: 1rem;
   --fs-14: 0.875rem;
   /* font familiy*/
-  --ff-sans: "Josefin Sans";
-  --ff-lato: "Lato";
+  --ff-sans: "Josefin Sans", sans-serif;
+  --ff-lato: "Lato", sans-serif;
+  --ff-roboto: "Roboto", sans-serif;
 }
 
 /* backgorund color classes*/
@@ -168,6 +165,8 @@ select {
 
 .page--width {
   max-width: var(--page-width);
+  margin: var(--page-width-margin, 0 auto);
+  padding: var(--page-width-padding, 1rem 5rem);
 }
 
 .page--width-fluid {
