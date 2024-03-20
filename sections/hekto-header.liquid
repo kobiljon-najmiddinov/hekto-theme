@@ -12,7 +12,6 @@
     .header-left-items {
         display: flex;
         align-items: center;
-        /* width: 50%; */
         gap: 10rem;
     }
     .logo-home-link {
@@ -28,16 +27,13 @@
         overflow: hidden;
         list-style-type: none;
     }
-    .select-pages {
+    .nav-link {
         color: var(--color-primary-text);
-        font-size: 16px;
-        font-weight: 400;
-        line-height: 20px;
         cursor: pointer;
     }
 
-    .select-pages:hover,
-    .select-pages:focus {
+    .nav-link:hover,
+    .nav-link:focus {
         color: var(--color-primary-accent);
     }
     .nav-lists a {
@@ -146,7 +142,7 @@
             z-index: 3;
             width: 40rem;
             height: 100%;
-            margin-top: 10px;
+            margin-top: 20px;
             background: #fff;
             visibility: hidden;
             overflow-x: hidden;
@@ -157,18 +153,15 @@
             display: block;
             transform: scale(0.8);
         }
-
-        .menu-drawer--icons[aria-expanded='true']:before {
-            content: '';
+        .backdrop {
             margin-top: 40px;
             left: 0;
+            right: 0;
             height: 100%;
             width: 100%;
-            display: block;
             position: absolute;
             z-index: 2;
             background: hsl(0 0% 0% / 0.5);
-            /* transition: background 5s linear; */
         }
 
         .menu-drawer--content[data-open='true'] {
@@ -193,34 +186,57 @@
             width: 36px;
         }
     }
+    @media screen and (max-width: 748px) {
+        .navigation_menu-drawer {
+            font-size: 12px;
+        }
+        .page--width {
+            --page-width-padding: 1rem 1.5rem;
+        }
+        .menu-drawer--content {
+            position: absolute;
+            transform: translate(-100%);
+            left: 0;
+            z-index: 3;
+            width: 40rem;
+            height: 100%;
+            margin-top: 20px;
+            background: #fff;
+            visibility: hidden;
+            overflow-x: hidden;
+            overflow-y: hidden;
+            transition: transform 400ms ease-in-out;
+        }
+    }
 </style>
 
-<div class='color-{{section.settings.color_scheme}}'>
-    <div class='navigation ff-lato flex page--width '>
-        <div class='navigation_menu-drawer '>
-            <div class='menu-drawer--icons' aria-expanded='false'>
-                <span class='header_icons'>
+<div class="color-{{section.settings.color_scheme}}">
+    <div class="navigation ff-lato flex page--width ">
+        <div class="navigation_menu-drawer ">
+            <div class="backdrop"></div>
+            <div class="menu-drawer--icons" aria-expanded="false">
+                <span class="header_icons">
                     {% render 'icons', icon: 'hamburger' %}
                     {% render 'icons', icon: 'close' %}
                 </span>
             </div>
 
-            <div class='menu-drawer--content' data-open='false'>
-                <ul class='header_drawer-lists flex '>
+            <div class="menu-drawer--content" data-open="false">
+                <ul class="header_drawer-lists flex ">
                     {% for link in section.settings.menu.links %}
                         <li>
-                            <a href='{{ link.url }}'>{{ link.title }}</a>
+                            <a class="nav-link" href="{{ link.url }}">{{ link.title }}</a>
                             {% if link.links.size > 0 %}
-                                <ul class='menu dropdown-child'>
+                                <ul class="menu dropdown-child">
                                     {% for child_link in link.links %}
-                                        <li class='menu-link'>
-                                            <a href='{{ child_link.url }}'>{{ child_link.title }}</a>
+                                        <li class="menu-link">
+                                            <a href="{{ child_link.url }}">{{ child_link.title }}</a>
 
                                             {% if child_link.links.size > 0 %}
-                                                <ul class='menu dropdown-grandchild'>
+                                                <ul class="menu dropdown-grandchild">
                                                     {% for grandchild_link in child_link.links %}
-                                                        <li class='menu-link'>
-                                                            <a href='{{ grandchild_link.url }}'>
+                                                        <li class="menu-link">
+                                                            <a href="{{ grandchild_link.url }}">
                                                                 {{- grandchild_link.title -}}
                                                             </a>
                                                         </li>
@@ -237,27 +253,27 @@
             </div>
         </div>
         {%- if section.settings.image != null -%}
-            <a class='logo-home-link' href='/'>
+            <a class="logo-home-link" href="/">
                 {{ section.settings.image | image_url: width: 100, height: 34 | image_tag }}
             </a>
         {%- endif -%}
 
-        <nav class='nav-inline-menu'>
-            <ul class='nav-lists flex '>
+        <nav class="nav-inline-menu">
+            <ul class="nav-lists flex ">
                 {% for link in section.settings.menu.links %}
                     <li>
-                        <a href='{{ link.url }}'>{{ link.title }}</a>
+                        <a class="nav-link" href="{{ link.url }}">{{ link.title }}</a>
                         {% if link.links.size > 0 %}
-                            <ul class='menu dropdown-child'>
+                            <ul class="menu dropdown-child">
                                 {% for child_link in link.links %}
-                                    <li class='menu-link'>
-                                        <a href='{{ child_link.url }}'>{{ child_link.title }}</a>
+                                    <li class="menu-link">
+                                        <a href="{{ child_link.url }}">{{ child_link.title }}</a>
 
                                         {% if child_link.links.size > 0 %}
-                                            <ul class='menu dropdown-grandchild'>
+                                            <ul class="menu dropdown-grandchild">
                                                 {% for grandchild_link in child_link.links %}
-                                                    <li class='menu-link'>
-                                                        <a href='{{ grandchild_link.url }}'>
+                                                    <li class="menu-link">
+                                                        <a href="{{ grandchild_link.url }}">
                                                             {{- grandchild_link.title -}}
                                                         </a>
                                                     </li>
@@ -272,56 +288,92 @@
                 {% endfor %}
             </ul>
         </nav>
-        <div class='header-right-items flex'>
-            <form class='search-field flex' action='{{routes.search_url}}'>
-                <button type='submit' class='search-btn flex'>
-                    {% render 'icons', icon: 'search' %}
-                </button>
-            </form>
-            <a href='#'>
+        <div class="header-right-items flex">
+            <a href="#">
                 <span>Login </span>
                 {% render 'icons', icon: 'user' %}
             </a>
-
-            <a href='#'>
-                <span>Wishlist </span>
-                {% render 'icons', icon: 'favorite' %}
-            </a>
-            <a href='/cart'>
+            <a href="/cart">
                 {% render 'icons', icon: 'cart' %}
             </a>
+            <form class="search-field flex" action="{{routes.search_url}}">
+                <button type="submit" class="search-btn flex">
+                    {% render 'icons', icon: 'search' %}
+                </button>
+            </form>
         </div>
     </div>
 </div>
 
 <script>
-    const menuDrawerBtn = document.querySelector('.header_icons')
-    const menuDrawerData = document.querySelector('.menu-drawer--content')
-    const body = document.querySelector('body')
-    const drawerMenuIcons = document.querySelector('.menu-drawer--icons')
-    const closeIcon = document.querySelector('.icon--close')
-    const hamburgerIcon = document.querySelector('.icon--hamburger')
+    const onDocumentReady = (callback) =>
+        document.readyState === 'complete' || document.readyState === 'interactive'
+            ? setTimeout(callback, 1)
+            : document.addEventListener('DOMContentLoaded', callback);
 
-    menuDrawerBtn.addEventListener('click', function () {
-        console.log(this)
-        menuDrawerData.setAttribute('data-open', menuDrawerData.dataset.open == 'false' ? 'true' : 'false')
-        let attribute = menuDrawerData.getAttribute('data-open')
-        if (attribute == 'true') {
-            body.classList.add('overflow--hidden')
-            closeIcon.style.display = 'block'
-            hamburgerIcon.style.display = 'none'
-        } else {
-            body.classList.remove('overflow--hidden')
-            closeIcon.style.display = 'none'
-            hamburgerIcon.style.display = 'block'
-        }
-        let drawerIconAttribute = drawerMenuIcons.getAttribute('aria-expanded')
+    const state = {
+        elements: {},
+    };
 
-        let ariaAttribute = drawerIconAttribute === 'false' ? 'true' : 'false'
-        console.log(ariaAttribute)
+    const cacheState = () => {
+        state.elements = {
+            body: document.querySelector('body'),
+            menuDrawerBtn: document.querySelector('.header_icons'),
+            menuDrawerData: document.querySelector('.menu-drawer--content'),
+            drawerMenuIcons: document.querySelector('.menu-drawer--icons'),
+            closeIcon: document.querySelector('.icon--close'),
+            hamburgerIcon: document.querySelector('.icon--hamburger'),
+            backdrop: document.querySelector('.backdrop'),
+        };
+    };
 
-        drawerMenuIcons.setAttribute('aria-expanded', ariaAttribute)
-    })
+    const attachEventListeners = () => {
+        state.elements.menuDrawerBtn.addEventListener('click', function () {
+            state.elements.menuDrawerData.setAttribute(
+                'data-open',
+                state.elements.menuDrawerData.dataset.open == 'false' ? 'true' : 'false'
+            );
+
+            let attribute = state.elements.menuDrawerData.getAttribute('data-open');
+            if (attribute == 'true') {
+                state.elements.body.classList.add('overflow--hidden');
+                state.elements.closeIcon.style.display = 'block';
+                state.elements.backdrop.style.display = 'block';
+                state.elements.hamburgerIcon.style.display = 'none';
+            } else {
+                state.elements.body.classList.remove('overflow--hidden');
+                state.elements.closeIcon.style.display = 'none';
+                state.elements.hamburgerIcon.style.display = 'block';
+                state.elements.backdrop.style.display = 'none';
+            }
+            let drawerIconAttribute = state.elements.drawerMenuIcons.getAttribute('aria-expanded');
+
+            let ariaAttribute = drawerIconAttribute === 'false' ? 'true' : 'false';
+
+            state.elements.drawerMenuIcons.setAttribute('aria-expanded', ariaAttribute);
+        });
+
+        state.elements.backdrop.addEventListener('click', (event) => {
+            console.log(event);
+            let attribute = state.elements.menuDrawerData.getAttribute('data-open');
+            if (attribute == 'true') {
+                state.elements.backdrop.style.display = 'none';
+                state.elements.menuDrawerData.setAttribute(
+                    'data-open',
+                    state.elements.menuDrawerData.dataset.open == 'false'
+                );
+                state.elements.closeIcon.style.display = 'none';
+                state.elements.hamburgerIcon.style.display = 'block';
+            }
+        });
+    };
+
+    const init = () => {
+        cacheState();
+        attachEventListeners();
+    };
+
+    onDocumentReady(() => init());
 </script>
 
 {% schema %}
