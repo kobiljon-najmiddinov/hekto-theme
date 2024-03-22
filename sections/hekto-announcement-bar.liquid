@@ -11,7 +11,6 @@
         display: flex;
         align-items: center;
         width: 100%;
-        padding: 1rem 5rem;
         margin: auto;
     }
     .contacts {
@@ -43,10 +42,18 @@
         margin-left: auto;
     }
 
+    @media screen and (max-width: 990px) {
+        .page--width {
+            --page-width-padding: 1rem 3.2rem;
+        }
+    }
+
     @media screen and (max-width: 750px) {
         .announcement-message {
             font-size: 12px;
-            padding: 1rem 3.2rem;
+        }
+        .page--width {
+            --page-width-padding: 1rem 1.5rem;
         }
         .contacts svg {
             width: 16px;
