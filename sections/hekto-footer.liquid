@@ -16,7 +16,7 @@
         gap: 0.5rem;
         border-radius: 3px;
         width: max-content;
-        padding: 0.125rem 0.125rem 0.125rem 0rem;
+        padding: 0.125rem 0.125rem 0.125rem 0.5rem;
         margin: 20px 0 0 0;
         align-items: center;
     }
@@ -57,8 +57,7 @@
         line-height: 19.2px;
         margin-top: 15px;
     }
-    .categories-section {
-    }
+
     .footer-wrapper .list-title {
         color: #000;
         font-family: var(--ff-sans);
@@ -112,17 +111,14 @@
         height: 20px;
         border-radius: 50%;
     }
-    /* Tablet Screen */
-    @media screen and (max-width: 1200px) {
-        .footer-wrapper {
-            /* justify-content: center; */
-        }
-    }
     /* Mobile Screen */
     @media screen and (max-width: 767px) {
         .footer-wrapper {
             gap: 60px;
-            justify-content: center;
+            font-size: 12px;
+        }
+        .footer-wrapper .list-title {
+            font-size: 16px;
         }
         .footer-left-items,
         .categories-section,
@@ -144,7 +140,9 @@
     @media screen and (max-width: 600px) {
         .footer-wrapper {
             gap: 60px;
-            justify-content: center;
+        }
+        .footer-wrapper .lists {
+            font-size: 12px;
         }
         .footer-cutout-wrapper {
             --page-width-padding: 1rem 3.2rem;
@@ -155,14 +153,6 @@
         .customer-care-section,
         .pages-section {
             width: 65%;
-        }
-    }
-    @media screen and (max-width: 320px) {
-        .form-email {
-            flex-direction: column;
-            align-items: end;
-            flex-wrap: wrap;
-            background: none;
         }
     }
 </style>
@@ -192,37 +182,23 @@
                 <p class='address-info'>17 Princess Road, London, Greater London NW1 8JR, UK</p>
             </div>
         </div>
-        <div class='categories-section'>
-            <h2 class='list-title'>Categories</h2>
-            <ul class='lists'>
-                <li>Laptops & Computers</li>
-                <li>Cameras & Photography</li>
-                <li>Smart Phones & Tablets</li>
-                <li>Video Games & Consoles</li>
-                <li>Waterproof Headphones</li>
-            </ul>
-        </div>
-        <div class='customer-care-section'>
-            <h2 class='list-title'>Customer Care</h2>
-            <ul class='lists'>
-                <li>My Account</li>
-                <li>Discount</li>
-                <li>Returns</li>
-                <li>Orders History</li>
-                <li>Order Tracking</li>
-            </ul>
-        </div>
-        <div class='pages-section'>
-            <h2 class='list-title'>Pages</h2>
-            <ul class='lists'>
-                <li>Blog</li>
-                <li>Browse the Shop</li>
-                <li>Category</li>
-                <li>Pre-Built Pages</li>
-                <li>Visual Composer Elements</li>
-                <li>WooCommerce Pages</li>
-            </ul>
-        </div>
+
+        {% for block in section.blocks %}
+            <div class='menu-section'>
+                {% if block.settings.footer_heading != blank %}
+                    <h2 class='list-title'>{{ block.settings.footer_heading }}</h2>
+                {% endif %}
+                {% if block.settings.menu.links != blank %}
+                    <ul class='lists'>
+                        {% for link in block.settings.menu.links %}
+                            <li>
+                                <a href='{{ link.url }}'>{{ link.title }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+        {% endfor %}
     </div>
 </div>
 <div class='footer-cutout-container'>
@@ -283,6 +259,26 @@
             "id": "twitter-link",
             "label": "Twitter Link",
             "placeholder": "https://twitter.com/shopify"
+        }
+    ],
+    "blocks": [
+        {
+            "type": "link_list",
+            "name": "Menu",
+            "settings": [
+                {
+                    "type": "inline_richtext",
+                    "id": "footer_heading",
+                    "default": "Quick links",
+                    "label": "Heading"
+                },
+                {
+                    "type": "link_list",
+                    "id": "menu",
+                    "default": "footer",
+                    "label": "Menu"
+                }
+            ]
         }
     ],
     "presets": [
