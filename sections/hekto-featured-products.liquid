@@ -1,9 +1,10 @@
 {% liquid
     assign ss = section.settings
+    assign bs = block.settings
 %}
 
 <div class="featured-product">
-    <p class="featured-product__heading">{{  }}</p>
+    <p class="featured-product__heading">{{ ss.heading }}</p>
 </div>
 
 {% schema %}
