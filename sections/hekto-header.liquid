@@ -354,7 +354,6 @@
         });
 
         state.elements.backdrop.addEventListener('click', (event) => {
-            console.log(event);
             let attribute = state.elements.menuDrawerData.getAttribute('data-open');
             if (attribute == 'true') {
                 state.elements.backdrop.style.display = 'none';
