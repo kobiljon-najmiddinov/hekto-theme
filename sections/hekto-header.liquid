@@ -1,0 +1,404 @@
+<style>
+    .navigation {
+        color: var(--color-primary-text);
+        flex-wrap: wrap;
+        align-items: center;
+        margin: auto;
+        width: 100%;
+    }
+    .navigation_menu-drawer {
+        display: none;
+    }
+    .header-left-items {
+        display: flex;
+        align-items: center;
+        gap: 10rem;
+    }
+    .logo-home-link {
+        margin-right: auto;
+    }
+
+    .dropdown-child,
+    .dropdown-grandchild {
+        display: grid;
+        grid-template-rows: 0fr;
+        min-height: 0;
+        border: 1px solid var(--color-tertiary-text);
+        overflow: hidden;
+        list-style-type: none;
+    }
+    .nav-link {
+        color: var(--color-primary-text);
+        cursor: pointer;
+    }
+
+    .nav-link:hover,
+    .nav-link:focus {
+        color: var(--color-primary-accent);
+    }
+    .nav-lists a {
+        font-weight: 400;
+        color: var(--color-primary-text);
+        text-decoration: none;
+    }
+
+    .search-field {
+        margin-left: auto;
+    }
+    .header-right-items {
+        margin-left: auto;
+        --gap: 3rem;
+    }
+
+    .header-right-items > a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+    }
+    .header-right-items a > svg {
+        color: var(--color-primary-text);
+        fill: var(--color-primary-text);
+    }
+
+    .header-right-items a svg path {
+        fill: var(--color-primary-text);
+    }
+
+    .favicon-nav {
+        align-items: center;
+        gap: 70px;
+    }
+
+    .nav-lists {
+        list-style-type: none;
+        flex-direction: row;
+        gap: 25px;
+        padding-inline-start: 0;
+    }
+
+    .search-btn {
+        background-color: var(--color-primary-accent);
+        height: 40px;
+        width: 51px;
+        gap: 0;
+        justify-content: center;
+        align-items: center;
+        border: 0;
+        cursor: pointer;
+    }
+
+    @media screen and (max-width: 990px) {
+        .overflow--hidden {
+            overflow: hidden;
+        }
+        .navigation {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            grid-template-areas: 'left-side-icons logo right-side-icons';
+            align-items: center;
+        }
+        .page--width {
+            --page-width-padding: 1rem 3.2rem;
+        }
+        .favicon-nav {
+            gap: 45px;
+        }
+        .logo-home-link {
+            margin: auto;
+        }
+
+        .nav-lists {
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .nav-inline-menu {
+            display: none;
+        }
+        .navigation_menu-drawer {
+            display: block;
+        }
+        .header_icons {
+            cursor: pointer;
+        }
+        .header_icons svg,
+        .header_icons path {
+            fill: var(--color-primary-text);
+        }
+
+        .menu-drawer--icons {
+            width: 20px;
+            height: 20px;
+        }
+
+        .icon--close {
+            display: none;
+        }
+
+        .menu-drawer--content {
+            position: absolute;
+            transform: translate(-100%);
+            left: 0;
+            z-index: 3;
+            width: 40rem;
+            height: 100%;
+            margin-top: 20px;
+            background: #fff;
+            visibility: hidden;
+            overflow-x: hidden;
+            overflow-y: hidden;
+            transition: transform 400ms ease-in-out;
+        }
+        .menu-drawer--icons[data-open='true'] .icon--close {
+            display: block;
+            transform: scale(0.8);
+        }
+        .backdrop {
+            margin-top: 40px;
+            left: 0;
+            right: 0;
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            z-index: 2;
+            background: hsl(0 0% 0% / 0.5);
+        }
+
+        .menu-drawer--content[data-open='true'] {
+            transform: translate(0);
+            visibility: visible;
+        }
+        .header_drawer-lists {
+            height: 100%;
+            flex-direction: column;
+            list-style-type: none;
+        }
+        .header-right-items a span {
+            display: none;
+        }
+
+        /* Header Right items */
+        .header-right-items {
+            --gap: 2rem;
+        }
+        .search-btn {
+            height: 32px;
+            width: 36px;
+        }
+    }
+    @media screen and (max-width: 748px) {
+        .navigation_menu-drawer {
+            font-size: 12px;
+        }
+        .page--width {
+            --page-width-padding: 1rem 1.5rem;
+        }
+        .menu-drawer--content {
+            position: absolute;
+            transform: translate(-100%);
+            left: 0;
+            z-index: 3;
+            width: 40rem;
+            height: 100%;
+            margin-top: 20px;
+            background: #fff;
+            visibility: hidden;
+            overflow-x: hidden;
+            overflow-y: hidden;
+            transition: transform 400ms ease-in-out;
+        }
+    }
+</style>
+
+<div class="color-{{section.settings.color_scheme}}">
+    <div class="navigation ff-lato flex page--width ">
+        <div class="navigation_menu-drawer ">
+            <div class="backdrop"></div>
+            <div class="menu-drawer--icons" aria-expanded="false">
+                <span class="header_icons">
+                    {% render 'icons', icon: 'hamburger' %}
+                    {% render 'icons', icon: 'close' %}
+                </span>
+            </div>
+
+            <div class="menu-drawer--content" data-open="false">
+                <ul class="header_drawer-lists flex ">
+                    {% for link in section.settings.menu.links %}
+                        <li>
+                            <a class="nav-link" href="{{ link.url }}">{{ link.title }}</a>
+                            {% if link.links.size > 0 %}
+                                <ul class="menu dropdown-child">
+                                    {% for child_link in link.links %}
+                                        <li class="menu-link">
+                                            <a href="{{ child_link.url }}">{{ child_link.title }}</a>
+
+                                            {% if child_link.links.size > 0 %}
+                                                <ul class="menu dropdown-grandchild">
+                                                    {% for grandchild_link in child_link.links %}
+                                                        <li class="menu-link">
+                                                            <a href="{{ grandchild_link.url }}">
+                                                                {{- grandchild_link.title -}}
+                                                            </a>
+                                                        </li>
+                                                    {% endfor %}
+                                                </ul>
+                                            {% endif %}
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        {%- if section.settings.image != null -%}
+            <a class="logo-home-link" href="/">
+                {{ section.settings.image | image_url: width: 100, height: 34 | image_tag }}
+            </a>
+        {%- endif -%}
+
+        <nav class="nav-inline-menu">
+            <ul class="nav-lists flex ">
+                {% for link in section.settings.menu.links %}
+                    <li>
+                        <a class="nav-link" href="{{ link.url }}">{{ link.title }}</a>
+                        {% if link.links.size > 0 %}
+                            <ul class="menu dropdown-child">
+                                {% for child_link in link.links %}
+                                    <li class="menu-link">
+                                        <a href="{{ child_link.url }}">{{ child_link.title }}</a>
+
+                                        {% if child_link.links.size > 0 %}
+                                            <ul class="menu dropdown-grandchild">
+                                                {% for grandchild_link in child_link.links %}
+                                                    <li class="menu-link">
+                                                        <a href="{{ grandchild_link.url }}">
+                                                            {{- grandchild_link.title -}}
+                                                        </a>
+                                                    </li>
+                                                {% endfor %}
+                                            </ul>
+                                        {% endif %}
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+        </nav>
+        <div class="header-right-items flex">
+            <a href="#">
+                <span>Login </span>
+                {% render 'icons', icon: 'user' %}
+            </a>
+            <a href="/cart">
+                {% render 'icons', icon: 'cart' %}
+            </a>
+            <form class="search-field flex" action="{{routes.search_url}}">
+                <button type="submit" class="search-btn flex">
+                    {% render 'icons', icon: 'search' %}
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    const onDocumentReady = (callback) =>
+        document.readyState === 'complete' || document.readyState === 'interactive'
+            ? setTimeout(callback, 1)
+            : document.addEventListener('DOMContentLoaded', callback);
+
+    const state = {
+        elements: {},
+    };
+
+    const cacheState = () => {
+        state.elements = {
+            body: document.querySelector('body'),
+            menuDrawerBtn: document.querySelector('.header_icons'),
+            menuDrawerData: document.querySelector('.menu-drawer--content'),
+            drawerMenuIcons: document.querySelector('.menu-drawer--icons'),
+            closeIcon: document.querySelector('.icon--close'),
+            hamburgerIcon: document.querySelector('.icon--hamburger'),
+            backdrop: document.querySelector('.backdrop'),
+        };
+    };
+
+    const attachEventListeners = () => {
+        state.elements.menuDrawerBtn.addEventListener('click', function () {
+            state.elements.menuDrawerData.setAttribute(
+                'data-open',
+                state.elements.menuDrawerData.dataset.open == 'false' ? 'true' : 'false'
+            );
+
+            let attribute = state.elements.menuDrawerData.getAttribute('data-open');
+            if (attribute == 'true') {
+                state.elements.body.classList.add('overflow--hidden');
+                state.elements.closeIcon.style.display = 'block';
+                state.elements.backdrop.style.display = 'block';
+                state.elements.hamburgerIcon.style.display = 'none';
+            } else {
+                state.elements.body.classList.remove('overflow--hidden');
+                state.elements.closeIcon.style.display = 'none';
+                state.elements.hamburgerIcon.style.display = 'block';
+                state.elements.backdrop.style.display = 'none';
+            }
+            let drawerIconAttribute = state.elements.drawerMenuIcons.getAttribute('aria-expanded');
+
+            let ariaAttribute = drawerIconAttribute === 'false' ? 'true' : 'false';
+
+            state.elements.drawerMenuIcons.setAttribute('aria-expanded', ariaAttribute);
+        });
+
+        state.elements.backdrop.addEventListener('click', (event) => {
+            let attribute = state.elements.menuDrawerData.getAttribute('data-open');
+            if (attribute == 'true') {
+                state.elements.backdrop.style.display = 'none';
+                state.elements.menuDrawerData.setAttribute(
+                    'data-open',
+                    state.elements.menuDrawerData.dataset.open == 'false'
+                );
+                state.elements.closeIcon.style.display = 'none';
+                state.elements.hamburgerIcon.style.display = 'block';
+            }
+        });
+    };
+
+    const init = () => {
+        cacheState();
+        attachEventListeners();
+    };
+
+    onDocumentReady(() => init());
+</script>
+
+{% schema %}
+{
+    "name": "Header Hekto",
+    "class": "header-hekto",
+    "enabled_on": {
+        "groups": ["header"]
+    },
+    "settings": [
+        {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Logo Image"
+        },
+        {
+            "type": "link_list",
+            "id": "menu",
+            "label": "Menu"
+        }
+    ],
+    "presets": [
+        {
+            "name": "Header Hekto",
+            "settings": {}
+        }
+    ]
+}
+{% endschema %}
