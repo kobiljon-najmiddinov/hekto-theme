@@ -33,8 +33,9 @@
         "link_list_6dVn6k"
       ],
       "settings": {
-        "facebook-link": "",
-        "instagram-link": "",
+        "image": "shopify:\/\/shop_images\/hekto-logo.png",
+        "facebook-link": "https:\/\/facebook.com\/shopify",
+        "instagram-link": "https:\/\/instagram.com\/shopify",
         "twitter-link": ""
       }
     },
