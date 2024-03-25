@@ -1,1 +1,64 @@
-{"name":"t:sections.footer.name","type":"footer","sections":{"footer":{"type":"footer","settings":{"color_scheme":"scheme-1","newsletter_enable":true,"newsletter_heading":"Subscribe to our emails","enable_follow_on_shop":true,"show_social":true,"enable_country_selector":true,"enable_language_selector":true,"payment_enable":true,"show_policy":false,"margin_top":0,"padding_top":36,"padding_bottom":36}}},"order":["footer"]}
+{
+  "name": "t:sections.footer.name",
+  "type": "footer",
+  "sections": {
+    "hekto_footer_QnetmP": {
+      "type": "hekto-footer",
+      "blocks": {
+        "link_list_mqkrBt": {
+          "type": "link_list",
+          "settings": {
+            "footer_heading": "Categories",
+            "menu": "footer"
+          }
+        },
+        "link_list_VqcQ3e": {
+          "type": "link_list",
+          "settings": {
+            "footer_heading": "Customer Care",
+            "menu": "footer-customer-care"
+          }
+        },
+        "link_list_6dVn6k": {
+          "type": "link_list",
+          "settings": {
+            "footer_heading": "Pages",
+            "menu": "footer-pages"
+          }
+        }
+      },
+      "block_order": [
+        "link_list_mqkrBt",
+        "link_list_VqcQ3e",
+        "link_list_6dVn6k"
+      ],
+      "settings": {
+        "image": "shopify:\/\/shop_images\/hekto-logo.png",
+        "facebook-link": "https:\/\/facebook.com\/shopify",
+        "instagram-link": "https:\/\/instagram.com\/shopify",
+        "twitter-link": ""
+      }
+    },
+    "footer": {
+      "type": "footer",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "newsletter_enable": true,
+        "newsletter_heading": "Subscribe to our emails",
+        "enable_follow_on_shop": true,
+        "show_social": true,
+        "enable_country_selector": true,
+        "enable_language_selector": true,
+        "payment_enable": true,
+        "show_policy": false,
+        "margin_top": 0,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "hekto_footer_QnetmP",
+    "footer"
+  ]
+}
