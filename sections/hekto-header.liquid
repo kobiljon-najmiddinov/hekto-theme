@@ -260,7 +260,7 @@
 
         <nav class="nav-inline-menu">
             <ul class="nav-lists flex ">
-                {% for link in section.settings.menu.links %}
+                {% for link in section.settings['main-menu'].links %}
                     <li>
                         <a class="nav-link" href="{{ link.url }}">{{ link.title }}</a>
                         {% if link.links.size > 0 %}
@@ -390,14 +390,14 @@
         },
         {
             "type": "link_list",
-            "id": "menu",
+            "id": "main-menu",
+            "default": "main-menu",
             "label": "Menu"
         }
     ],
     "presets": [
         {
-            "name": "Header Hekto",
-            "settings": {}
+            "name": "Header Hekto"
         }
     ]
 }
