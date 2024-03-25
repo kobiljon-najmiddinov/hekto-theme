@@ -67,7 +67,7 @@
     }
 
     .footer-wrapper .lists {
-        color: var(--color-sub-text);
+        color: rgba(138, 143, 185, 0.75);
         font-family: var(--ff-lato);
         font-weight: 400;
         list-style-type: none;
@@ -77,6 +77,11 @@
     }
     .footer-wrapper .lists li {
         margin-top: 20px;
+    }
+
+    .lists_link:hover,
+    .lists_link:focus {
+        color: rgba(138, 143, 185, 1);
     }
 
     .footer-cutout-container {
@@ -192,7 +197,7 @@
                     <ul class='lists'>
                         {% for link in block.settings.menu.links %}
                             <li>
-                                <a href='{{ link.url }}'>{{ link.title }}</a>
+                                <a class='lists_link' href='{{ link.url }}'>{{ link.title }}</a>
                             </li>
                         {% endfor %}
                     </ul>
