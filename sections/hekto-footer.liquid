@@ -1,0 +1,295 @@
+<style>
+    .footer-container {
+        background: #eeeffb;
+        padding: 60px 0 45px 0;
+    }
+    .footer-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 80px;
+        margin: auto;
+    }
+
+    .form-email {
+        background: hsl(0 0% 100% / 0.45);
+        display: flex;
+        gap: 0.5rem;
+        border-radius: 3px;
+        width: max-content;
+        padding: 0.125rem 0.125rem 0.125rem 0.5rem;
+        margin: 20px 0 0 0;
+        align-items: center;
+    }
+    .email-input {
+        background: hsl(0 0% 100% / 0.45);
+        border: 0;
+        outline: 0;
+    }
+
+    .email-input::placeholder {
+        color: var(--color-sub-text);
+        font-family: var(--ff-lato);
+        font-weight: 400;
+        font-size: 1rem;
+        line-height: 19.2px;
+        border: 0;
+        outline: 0;
+        padding: 0.5rem;
+    }
+    .submit-input {
+        background-color: var(--color-primary-accent);
+        color: #eeeffb;
+        font-family: var(--ff-roboto);
+        font-size: 1rem;
+        font-weight: 500;
+        line-height: 18.75px;
+        border: 0;
+        border-radius: 3px;
+        margin: 0 !important;
+        padding: 0.25rem 2.5rem;
+    }
+
+    .contact-info {
+        color: var(--color-sub-text);
+        font-family: var(--ff-lato);
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 19.2px;
+        margin-top: 15px;
+    }
+
+    .footer-wrapper .list-title {
+        color: #000;
+        font-family: var(--ff-sans);
+        font-size: 22px;
+        font-weight: bold;
+        line-height: 25.78px;
+    }
+
+    .footer-wrapper .lists {
+        color: rgba(138, 143, 185, 0.75);
+        font-family: var(--ff-lato);
+        font-weight: 400;
+        list-style-type: none;
+        line-height: 19.2px;
+        margin-top: 35px;
+        padding: 0;
+    }
+    .footer-wrapper .lists li {
+        margin-top: 20px;
+    }
+
+    .lists_link:hover,
+    .lists_link:focus {
+        color: rgba(138, 143, 185, 1);
+    }
+
+    .footer-cutout-container {
+        background: #e7e4f8;
+    }
+
+    .footer-cutout-wrapper {
+        display: flex;
+        margin: auto;
+        --page-width-padding: 1rem 10rem;
+    }
+    .footer-cutout-wrapper span {
+        color: #9da0ae;
+        font-family: var(--ff-lato);
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 19.2px;
+    }
+
+    .social-links {
+        display: flex;
+        gap: 1.5rem;
+        margin-left: auto;
+    }
+
+    .social-links a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #151875;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+    }
+    /* Mobile Screen */
+    @media screen and (max-width: 767px) {
+        .footer-wrapper {
+            gap: 60px;
+            font-size: 12px;
+        }
+        .footer-wrapper .list-title {
+            font-size: 16px;
+        }
+        .footer-left-items,
+        .categories-section,
+        .customer-care-section,
+        .pages-section {
+            width: 50%;
+        }
+        .footer-cutout-wrapper {
+            flex-direction: column-reverse;
+            align-items: center;
+            gap: 1.5rem;
+            --page-width-padding: 1rem 3.2rem;
+        }
+        .social-links {
+            padding-top: 1rem;
+            margin: auto;
+        }
+    }
+    @media screen and (max-width: 600px) {
+        .footer-wrapper {
+            gap: 60px;
+        }
+        .footer-wrapper .lists {
+            font-size: 12px;
+        }
+        .footer-cutout-wrapper {
+            --page-width-padding: 1rem 3.2rem;
+        }
+
+        .footer-left-items,
+        .categories-section,
+        .customer-care-section,
+        .pages-section {
+            width: 65%;
+        }
+    }
+</style>
+
+<div class='footer-container'>
+    <div class='footer-wrapper page--width'>
+        <div class='footer-left-items'>
+            {%- if section.settings.image != null -%}
+                <a class='logo-home-link' href='/'>
+                    {{ section.settings.image | image_url: width: 100, height: 34 | image_tag }}
+                </a>
+            {%- endif -%}
+            {% form 'customer' %}
+                <div class='form-email'>
+                    <input
+                        class='email-input'
+                        type='email'
+                        name='contact[email]'
+                        placeholder='Enter Email Address'
+                        required
+                    >
+                    <input class='submit-input' type='submit' value='Sign up'>
+                </div>
+            {% endform %}
+            <div class='contact-info'>
+                <span>Contact Info</span>
+                <p class='address-info'>17 Princess Road, London, Greater London NW1 8JR, UK</p>
+            </div>
+        </div>
+
+        {% for block in section.blocks %}
+            <div class='menu-section'>
+                {% if block.settings.footer_heading != blank %}
+                    <h2 class='list-title'>{{ block.settings.footer_heading }}</h2>
+                {% endif %}
+                {% if block.settings.menu.links != blank %}
+                    <ul class='lists'>
+                        {% for link in block.settings.menu.links %}
+                            <li>
+                                <a class='lists_link' href='{{ link.url }}'>{{ link.title }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+</div>
+<div class='footer-cutout-container'>
+    <div class='footer-cutout-wrapper page--width'>
+        <span>©Webecy - All Rights Reserved</span>
+        {% if section.settings['facebook-link']
+            or section.settings['instagram-link']
+            or section.settings['twitter-link'] != blank
+        %}
+            <div class='social-links'>
+                {% if section.settings['facebook-link'] != blank %}
+                    <a href='{{ section.settings['facebook-link'] }}'>
+                        {% render 'icons', icon: 'facebook' %}
+                    </a>
+                {% endif %}
+                {% if section.settings['instagram-link'] != blank %}
+                    <a href='{{ section.settings['instagram-link'] }}'>
+                        {% render 'icons', icon: 'instagram' %}
+                    </a>
+                {% endif %}
+                {% if section.settings['twitter-link'] != blank %}
+                    <a href='{{ section.settings['twitter-link'] }}'>
+                        {% render 'icons', icon: 'twitter' %}
+                    </a>
+                {% endif %}
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "Hekto Footer",
+    "class": "hekto-footer",
+    "enabled_on": {
+        "groups": ["footer"]
+    },
+    "settings": [
+        {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Logo"
+        },
+        {
+            "type": "text",
+            "id": "facebook-link",
+            "label": "Facebook Link",
+            "placeholder": "https://facebook.com/shopify"
+        },
+        {
+            "type": "text",
+            "id": "instagram-link",
+            "label": "Instagram Link",
+            "placeholder": "https://instagram.com/shopify"
+        },
+        {
+            "type": "text",
+            "id": "twitter-link",
+            "label": "Twitter Link",
+            "placeholder": "https://twitter.com/shopify"
+        }
+    ],
+    "blocks": [
+        {
+            "type": "link_list",
+            "name": "Menu",
+            "settings": [
+                {
+                    "type": "inline_richtext",
+                    "id": "footer_heading",
+                    "default": "Quick links",
+                    "label": "Heading"
+                },
+                {
+                    "type": "link_list",
+                    "id": "menu",
+                    "default": "footer",
+                    "label": "Menu"
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": "Hekto Footer"
+        }
+    ]
+}
+{% endschema %}
