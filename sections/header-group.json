@@ -29,16 +29,17 @@
         "phone": "(12345)67890"
       }
     },
-    "hekto_header_Y4KDAE": {
+    "hekto_header_yV8Awq": {
       "type": "hekto-header",
       "settings": {
-        "menu": ""
+        "image": "shopify:\/\/shop_images\/hekto-logo.png",
+        "main-menu": "main-menu"
       }
     }
   },
   "order": [
     "header",
     "hekto_announcement_bar_QGVrE7",
-    "hekto_header_Y4KDAE"
+    "hekto_header_yV8Awq"
   ]
 }
