@@ -1,0 +1,24 @@
+{% schema %}
+{
+    "name": "Hekto Featured Product",
+    "enabled_on": { "templates": ["*"] },
+    "settings": [
+        {
+            "type": "inline_richtext",
+            "id": "heading",
+            "default": "Featured Products",
+            "label": "Heading"
+        }
+    ],
+    "blocks": [
+        {
+            "type": "@app"
+        }
+    ],
+    "presets": [
+        {
+            "name": "Hekto Featured Product"
+        }
+    ]
+}
+{% endschema %}
