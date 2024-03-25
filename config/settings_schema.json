@@ -62,7 +62,7 @@
             "type": "color",
             "id": "button",
             "label": "t:settings_schema.colors.settings.button_background.label",
-            "default": "#121212"
+            "default": "#FB2E86"
           },
           {
             "type": "color",
@@ -81,6 +81,54 @@
             "id": "shadow",
             "label": "t:settings_schema.colors.settings.shadow.label",
             "default": "#121212"
+          },
+          {
+            "type":"color",
+            "id": "primary_text",
+            "label": "Primary Text",
+            "default": "#0D0E43"
+          },
+          {
+            "type":"color",
+            "id": "secondary_text",
+            "label": "Secondary Text",
+            "default": "#151875"
+          },
+          {
+            "type":"color",
+            "id": "tertiary_text",
+            "label": "Tertiary Text",
+            "default": "#F1F1F1"
+          },
+          {
+            "type":"color",
+            "id": "sub_text",
+            "label": "Sub Text",
+            "default": "#8A8FB9"
+          },
+          {
+            "type":"color",
+            "id": "caption_text",
+            "label": "Caption",
+            "default": "#1A0B5B"
+          },
+          {
+            "type":"color",
+            "id": "primary_background",
+            "label": "Primary Background",
+            "default": "#7E33E0"
+          },
+          {
+            "type":"color",
+            "id": "primary_accent",
+            "label": "Primary Accent",
+            "default": "#FB2E86"
+          },
+          {
+            "type":"color",
+            "id": "section_hover",
+            "label": "Section hover",
+            "default": "#2F1AC4"
           }
         ],
         "role": {
