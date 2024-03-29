@@ -25,27 +25,6 @@
   position: relative;
 }
 
-.product-card__product:hover .product__image img {
-  transform: scale(0.9);
-  transition: transform 400ms ease-in-out;
-}
-.product-card__product:hover .product__image__hover-icons, .product-card__product:hover .product__image__hover-btn {
-  visibility: visible;
-}
-.product-card__product:hover .product__image__hover-btn {
-  transform: translateY(0);
-  transition: transform 0.3s linear;
-}
-.product-card__product:hover .product__info {
-  background-color: var(--color-section-hover);
-}
-.product-card__product:hover .product__option-3 {
-  background: hsl(40, 100%, 88%);
-}
-.product-card__product:hover .product__title, .product-card__product:hover .product__id-code, .product-card__product:hover .product__price {
-  color: #fff;
-}
-
 .product__image {
   display: flex;
   align-items: center;
@@ -80,6 +59,7 @@
   content: "";
   background-color: hsl(235, 62%, 96%);
   border-radius: 50%;
+  box-shadow: 0px 0px 5px rgba(149, 157, 165, 0.2);
   position: absolute;
   z-index: -1;
   width: 100%;
@@ -93,9 +73,11 @@
 }
 .product__image__hover-icons span svg path {
   fill: hsl(210, 100%, 54%);
+  transition: fill 0.25s linear;
 }
 .product__image__hover-icons span svg:hover path {
   fill: var(--color-section-hover);
+  transition: fill 0.2s linear;
 }
 .product__image__hover-icons__cart svg {
   width: 19px;
@@ -183,6 +165,27 @@
   font-size: 14px;
 }
 
+.product-card__product:hover .product__image img {
+  transform: scale(0.9);
+  transition: transform 400ms ease-in-out;
+}
+.product-card__product:hover .product__image__hover-icons, .product-card__product:hover .product__image__hover-btn {
+  visibility: visible;
+}
+.product-card__product:hover .product__image__hover-btn {
+  transform: translateY(0);
+  transition: transform 0.3s linear;
+}
+.product-card__product:hover .product__info {
+  background-color: var(--color-section-hover);
+}
+.product-card__product:hover .product__option-3 {
+  background: hsl(40, 100%, 88%);
+}
+.product-card__product:hover .product__title, .product-card__product:hover .product__id-code, .product-card__product:hover .product__price {
+  color: #fff;
+}
+
 .image__background {
   background: hsl(228, 38%, 97%);
   display: block !important;
@@ -196,4 +199,17 @@
 
 .color-option__values {
   display: none;
+}
+
+@media screen and (max-width: 990px) {
+  .featured-product__product-card {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 3rem;
+    column-gap: 0;
+    place-items: center;
+  }
+  .product-card__product {
+    width: 95%;
+    box-shadow: 0 0 12px rgba(149, 157, 165, 0.2);
+  }
 }
