@@ -28,7 +28,17 @@
 
 }
 
+.swiper-pagination-bullet {
+    background-color: #FEBAD7;
+    padding: 0.4rem 1.6rem;
+    border-radius: 2.5px;
 
+    &:active{
+        background-color: var(--color-primary-accent);
+        padding: 0.4 2.4rem;
+        transition: padding 200ms linear; 
+    }
+}
 
 .product {
 
@@ -285,9 +295,10 @@
     .product-card__product{
         box-shadow: 0 0 12px rgba(149, 157, 165, 0.2);
     }
+    
 }
 
-@media screen and (max-width: 749px){
+@media screen and (max-width: 767px){
     .featured-product {
         &__heading {
             font-size: 3rem;

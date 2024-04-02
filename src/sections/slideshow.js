@@ -13,7 +13,6 @@ const cacheState = () => {
         };
 };
 
-// TODO: Fix pagination for 2 banner slideshows
 const initSwiper = slideElm => {
     state.elements.slider.forEach(slides => {
             slides = new Swiper(".swiper", {
