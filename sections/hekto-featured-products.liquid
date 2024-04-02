@@ -1,0 +1,85 @@
+{{ 'featured-products.min.css' | asset_url | stylesheet_tag }}
+{{ 'featured-products.min.js' | asset_url | script_tag }}
+
+{% liquid
+    assign ss = section.settings
+    assign bs = block.settings
+%}
+
+<div class="featured-product">
+    <h2 class="featured-product__heading">{{ ss.heading }}</h2>
+    <div class="swiper featuredSwiper ">
+        <div class="featured-product__body swiper-wrapper page--width">
+            {% for product in section.settings.collection.products %}
+                <div class="featured-product__product-card swiper-slide">
+                    <div class="product-card__product ">
+                        <div class="product__image">
+                            <div class="image__background">
+                                <img
+                                    src="{{ product.featured_image | image_url: width: 178, height: 178 }}"
+                                    alt="{{ product.title }}"
+                                >
+                            </div>
+                            <div class="product__image__hover-icons">
+                                <a class="" href="{{ product.url }}">
+                                    <span class="product__image__hover-icons__cart">
+                                        {% render 'icons', icon: 'cart' %}
+                                    </span>
+                                </a>
+                                <span class="product__image__hover-icons__search-plus">
+                                    {% render 'icons', icon: 'search-plus' %}
+                                </span>
+                            </div>
+                            <a class="product__image__hover-btn" href="{{ product.url }}">
+                                <span class="hover-btn_title">View Details</span>
+                            </a>
+                        </div>
+                        <div class="product__info">
+                            <a class="product__link product__title" href="{{ product.url }}">
+                                {{ product.title }}
+                            </a>
+                            <a class="product__color-option" href="{{ product.url }}">
+                                <span class="product__option-1"></span>
+                                <span class="product__option-2"></span>
+                                <span class="product__option-3"></span>
+                            </a>
+                            <span class="product__id-code">Code - {{ product.id }}</span>
+                            <span class="product__price">{{ product.price | money }}</span>
+                        </div>
+                    </div>
+                </div>
+            {% endfor -%}
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "Hekto Featured Product",
+    "enabled_on": { "templates": ["*"] },
+    "settings": [
+        {
+            "type": "inline_richtext",
+            "id": "heading",
+            "default": "Featured Products",
+            "label": "Heading"
+        },
+        {
+            "type": "collection",
+            "id": "collection",
+            "label": "Collection"
+        }
+    ],
+    "blocks": [
+        {
+            "type": "@app"
+        }
+    ],
+    "presets": [
+        {
+            "name": "Hekto Featured Product"
+        }
+    ]
+}
+{% endschema %}
