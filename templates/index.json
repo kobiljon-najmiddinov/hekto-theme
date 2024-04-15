@@ -75,6 +75,9 @@
         "slide_mCCeBa": {
           "type": "slide",
           "settings": {
+            "desktop-banner": "shopify:\/\/shop_images\/banner-img.png",
+            "mobile-banner": "shopify:\/\/shop_images\/Mobile_Banner_851d0038-90e5-4f87-8942-75a25a512602.png",
+            "tablet-banner": "shopify:\/\/shop_images\/Tablet_Banner_da072dec-90e8-49fc-858f-b047106a797c.png"
           }
         }
       },
