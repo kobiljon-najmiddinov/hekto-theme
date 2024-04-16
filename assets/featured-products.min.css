@@ -2,7 +2,8 @@
   !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/sections/styles/featured-products.scss ***!
   \*************************************************************************************************************************************/
 .featured-product {
-  padding: 3rem 0;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
   margin: 0 auto;
 }
 .featured-product__body {
