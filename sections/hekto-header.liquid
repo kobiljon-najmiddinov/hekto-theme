@@ -173,6 +173,10 @@
             flex-direction: column;
             list-style-type: none;
         }
+
+        .header_drawer-lists__list {
+            padding: 5px 0;
+        }
         .header-right-items a span {
             display: none;
         }
@@ -224,7 +228,7 @@
             <div class="menu-drawer--content" data-open="false">
                 <ul class="header_drawer-lists flex ">
                     {% for link in section.settings['main-menu'].links %}
-                        <li>
+                        <li class="header_drawer-lists__list">
                             <a class="nav-link" href="{{ link.url }}">{{ link.title }}</a>
                             {% if link.links.size > 0 %}
                                 <ul class="menu dropdown-child">
