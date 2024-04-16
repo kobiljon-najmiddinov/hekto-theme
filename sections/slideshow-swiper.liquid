@@ -202,7 +202,10 @@
     <div class="swiper-wrapper">
         <!-- Slides -->
         {% for block in section.blocks %}
-            {% if block.settings['desktop-banner'] and block.settings['mobile-banner'] != blank %}
+            {% if block.settings['desktop-banner']
+                and block.settings['tablet-banner']
+                and block.settings['mobile-banner'] != blank
+            %}
                 <div class="swiper-slide">
                     <div class="image--container ">
                         <div class="hero-content">
@@ -219,6 +222,10 @@
                             <source
                                 srcset="{{ block.settings['mobile-banner'] | image_url }}"
                                 media="(max-width: 767px)"
+                            >
+                            <source
+                                srcset="{{ block.settings['tablet-banner'] | image_url }}"
+                                media="(max-width: 1200px)"
                             >
                             <img src="{{ block.settings['desktop-banner'] | image_url }}" alt="Banner Image">
                         </picture>
@@ -275,6 +282,11 @@
                     "type": "image_picker",
                     "id": "mobile-banner",
                     "label": "Mobile Banner Image"
+                },
+                {
+                    "type": "image_picker",
+                    "id": "tablet-banner",
+                    "label": "Tablet Banner Image"
                 }
             ]
         }
