@@ -33,7 +33,7 @@
 .featured-product .swiper-pagination-bullet-active {
   background-color: var(--color-primary-accent) !important;
   padding: 0.4rem 2.4rem;
-  transition: padding 100ms linear;
+  transition: padding 100ms ease-in-out;
 }
 
 .product-card__product {
