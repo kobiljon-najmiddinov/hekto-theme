@@ -30,7 +30,7 @@
   border: 0;
   transform: rotate(0);
 }
-.featured-product .swiper-pagination-bullet:active {
+.featured-product .swiper-pagination-bullet-active {
   background-color: var(--color-primary-accent) !important;
   padding: 0.4rem 2.4rem;
   transition: padding 200ms linear;
