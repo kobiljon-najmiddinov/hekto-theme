@@ -85,10 +85,18 @@
             "desktop-banner": "shopify:\/\/shop_images\/Tablet_Banner_da072dec-90e8-49fc-858f-b047106a797c.png",
             "mobile-banner": "shopify:\/\/shop_images\/Mobile_Banner_851d0038-90e5-4f87-8942-75a25a512602.png"
           }
+        },
+        "slide_8f9yCN": {
+          "type": "slide",
+          "settings": {
+            "desktop-banner": "shopify:\/\/shop_images\/Tablet_Banner_da072dec-90e8-49fc-858f-b047106a797c.png",
+            "mobile-banner": "shopify:\/\/shop_images\/Mobile_Banner_851d0038-90e5-4f87-8942-75a25a512602.png"
+          }
         }
       },
       "block_order": [
-        "slide_zX8a63"
+        "slide_zX8a63",
+        "slide_8f9yCN"
       ],
       "settings": {
         "hero-title": "Best Furniture For Your Castle....",
