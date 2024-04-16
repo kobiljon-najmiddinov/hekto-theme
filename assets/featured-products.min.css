@@ -158,6 +158,7 @@
   font-size: 1.8rem;
   padding-inline: 1rem;
   text-align: center;
+  text-overflow: ellipsis;
 }
 .product__color-option {
   display: flex;
