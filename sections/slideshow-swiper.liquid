@@ -220,10 +220,6 @@
                                 srcset="{{ block.settings['mobile-banner'] | image_url }}"
                                 media="(max-width: 767px)"
                             >
-                            <source
-                                srcset="{{ block.settings['tablet-banner'] | image_url }}"
-                                media="(max-width: 1200px)"
-                            >
                             <img src="{{ block.settings['desktop-banner'] | image_url }}" alt="Banner Image">
                         </picture>
                     </div>
@@ -279,11 +275,6 @@
                     "type": "image_picker",
                     "id": "mobile-banner",
                     "label": "Mobile Banner Image"
-                },
-                {
-                    "type": "image_picker",
-                    "id": "tablet-banner",
-                    "label": "Tablet Banner Image"
                 }
             ]
         }
