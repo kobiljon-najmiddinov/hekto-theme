@@ -36,7 +36,7 @@
 }
 .swiper-pagination-bullet:active {
   background-color: var(--color-primary-accent);
-  padding: 0.4 2.4rem;
+  padding: 0.4rem 2.4rem;
   transition: padding 200ms linear;
 }
 
