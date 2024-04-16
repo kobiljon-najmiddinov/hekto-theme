@@ -29,9 +29,9 @@
 }
 
 .swiper-pagination-bullet {
-  background-color: #FEBAD7;
+  background-color: #FEBAD7 !important;
   padding: 0.4rem 1.6rem;
-  border-radius: 2.5px;
+  border-radius: 2.5px !important;
   aspect-ratio: 1;
 }
 .swiper-pagination-bullet:active {
