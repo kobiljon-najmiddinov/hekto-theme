@@ -72,13 +72,35 @@
     "hekto_featured_products_yQ7Xhq": {
       "type": "hekto-featured-products",
       "settings": {
-        "heading": "Featured Products"
+        "heading": "Featured Products",
+        "collection": ""
+      }
+    },
+    "slideshow_swiper_QPPgWq": {
+      "type": "slideshow-swiper",
+      "blocks": {
+        "slide_zX8a63": {
+          "type": "slide",
+          "settings": {
+            "desktop-banner": "shopify:\/\/shop_images\/Tablet_Banner_da072dec-90e8-49fc-858f-b047106a797c.png",
+            "mobile-banner": "shopify:\/\/shop_images\/Mobile_Banner_851d0038-90e5-4f87-8942-75a25a512602.png"
+          }
+        }
+      },
+      "block_order": [
+        "slide_zX8a63"
+      ],
+      "settings": {
+        "hero-title": "Best Furniture For Your Castle....",
+        "hero-header": "New Furniture Collection Trends in 2020",
+        "hero-subtext": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Magna in est adipiscing in phasellus non in justo."
       }
     }
   },
   "order": [
     "image_banner",
     "featured_collection",
-    "hekto_featured_products_yQ7Xhq"
+    "hekto_featured_products_yQ7Xhq",
+    "slideshow_swiper_QPPgWq"
   ]
 }
