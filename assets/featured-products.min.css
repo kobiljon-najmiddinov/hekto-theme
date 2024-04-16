@@ -156,6 +156,8 @@
   color: var(--color-primary-accent);
   font-family: var(--ff-lato);
   font-size: 1.8rem;
+  padding-inline: 1rem;
+  text-align: center;
 }
 .product__color-option {
   display: flex;
