@@ -24,7 +24,7 @@
 }
 .featured-product .swiper-pagination-bullet {
   background-color: #FEBAD7 !important;
-  padding: 0.4rem 1.6rem;
+  padding: 0.2rem 0.8rem;
   border-radius: 5px !important;
   aspect-ratio: 1;
   border: 0;
@@ -32,7 +32,7 @@
 }
 .featured-product .swiper-pagination-bullet-active {
   background-color: var(--color-primary-accent) !important;
-  padding: 0.4rem 2.4rem;
+  padding: 0.4rem 1.6rem;
   transition: padding 100ms ease-in-out;
 }
 
