@@ -103,7 +103,7 @@
       "type": "hekto-featured-products",
       "settings": {
         "heading": "Featured Products",
-        "collection": ""
+        "collection": "featured-products"
       }
     }
   },
