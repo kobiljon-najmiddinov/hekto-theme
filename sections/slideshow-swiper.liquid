@@ -202,10 +202,7 @@
     <div class="swiper-wrapper">
         <!-- Slides -->
         {% for block in section.blocks %}
-            {% if block.settings['desktop-banner']
-                and block.settings['tablet-banner']
-                and block.settings['mobile-banner'] != blank
-            %}
+            {% if block.settings['desktop-banner'] and block.settings['mobile-banner'] != blank %}
                 <div class="swiper-slide">
                     <div class="image--container ">
                         <div class="hero-content">
