@@ -32,6 +32,7 @@
   background-color: #FEBAD7;
   padding: 0.4rem 1.6rem;
   border-radius: 2.5px;
+  aspect-ratio: 1;
 }
 .swiper-pagination-bullet:active {
   background-color: var(--color-primary-accent);
