@@ -223,7 +223,7 @@
 
             <div class="menu-drawer--content" data-open="false">
                 <ul class="header_drawer-lists flex ">
-                    {% for link in section.settings.menu.links %}
+                    {% for link in section.settings['main-menu'].links %}
                         <li>
                             <a class="nav-link" href="{{ link.url }}">{{ link.title }}</a>
                             {% if link.links.size > 0 %}
