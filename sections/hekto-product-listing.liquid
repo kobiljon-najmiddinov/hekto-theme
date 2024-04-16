@@ -1,0 +1,121 @@
+{{ 'product-listing.min.css' | asset_url | stylesheet_tag }}
+{{ 'product-listing.min.js' | asset_url | script_tag }}
+
+<div class="product-lists">
+    <div class="product-lists__promotion">
+        <div class="promotion__info page--width">
+            <h2 class="promotion__title">Shop Grid Default</h2>
+            <p class="promotion__navigation">Home . Pages . <span>Shop Grid Default</span></p>
+        </div>
+    </div>
+    <div class="product-lists__content">
+        <div class="content__container page--width">
+            <div class="content__header">
+                <div class="header__page-info">
+                    <h2 class="header__title">{{ section.settings.heading }}</h2>
+                    <span class="header__search-stats">About 9,620 results (0.62 seconds)</span>
+                </div>
+                <div class="header__filters filter">
+                    <div>
+                        <label>Per Page:</label>
+                        <input class="per-page-filter" type="text">
+                    </div>
+                    <div>
+                        <span>Sort By:</span>
+                    </div>
+                    <div>
+                        <span>View:</span>
+                        {% render 'icons', icon: 'grid' %}
+                        {% render 'icons', icon: 'list' %}
+                    </div>
+                </div>
+            </div>
+            <div class="content__products">
+                <div class="products flow">
+                    {% for product in collection.products %}
+                        {% if product != blank %}
+                            <div class="products__media-content">
+                                <div class="products__image-content">
+                                    <div class="products__image-background">
+                                        <img
+                                            class="products__image"
+                                            src="{{ product.featured_image | image_url: width: 178 }}"
+                                            alt="{{ product.title }}"
+                                        >
+                                    </div>
+                                    <div class="products__image__hover-icons">
+                                        {% comment %} TODO: when shop icon is clicked, product should be added to cart {% endcomment %}
+                                        <a class="add-to-cart-link" href="{{ routes.cart_url }}">
+                                            <span class="product__image__hover-icons__cart">
+                                                {% render 'icons', icon: 'cart' %}
+                                            </span>
+                                        </a>
+                                        <span class="products__image__hover-icons__search-plus">
+                                            {% render 'icons', icon: 'search-plus' %}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="products__media-info">
+                                    <a class="product__link" href="{{ product.url }}">
+                                        <h2 class="product__title">{{ product.title }}</h2>
+                                    </a>
+                                    <a class="product__color-option" href="{{ product.url }}">
+                                        <span class="product__option-1"></span>
+                                        <span class="product__option-2"></span>
+                                        <span class="product__option-3"></span>
+                                    </a>
+                                    <div class="product__price">
+                                        <span class="product__price-discount">{{ product.price_min | money }} </span>
+                                        <span class="product__price-initial">
+                                            {{- product.compare_at_price | money -}}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        {% else %}
+                            {{ 'product-1' | placeholder_svg_tag }}
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <div class="side-filters">
+                    <div class="side-filters__product-type-filter">
+                        <h2 class="side-filters__product-type-filter__title">Product Type</h2>
+                        <ul class="side-filters__product-type-filter__option">
+                            <li>Armchair</li>
+                            <li>Chair</li>
+                            <li>Bag</li>
+                            <li>Headphone</li>
+                            <li>Watch</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="content__sponsers"></div>
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "Product Listing Page",
+    "enabled_on": { "templates": ["*"] },
+    "settings": [
+        {
+            "type": "inline_richtext",
+            "id": "heading",
+            "default": "Ecommerce Acceories & Fashion item ",
+            "label": "Page Heading"
+        }
+    ],
+    "blocks": [
+        {
+            "type": "@app"
+        }
+    ],
+    "presets": [
+        {
+            "name": "Product Listing Page"
+        }
+    ]
+}
+{% endschema %}

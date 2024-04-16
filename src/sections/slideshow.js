@@ -1,6 +1,6 @@
 
 import Swiper from "swiper/bundle";
-import "swiper/css/bundle";
+// import "swiper/css/bundle";
 import { onDocumentReady } from "../utils/dom";
 
 const state = {
