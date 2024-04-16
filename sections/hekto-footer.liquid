@@ -137,6 +137,10 @@
             gap: 1.5rem;
             --page-width-padding: 1rem 3.2rem;
         }
+
+        .email-input {
+            padding: ;
+        }
         .social-links {
             padding-top: 1rem;
             margin: auto;
@@ -162,42 +166,42 @@
     }
 </style>
 
-<div class='footer-container'>
-    <div class='footer-wrapper page--width'>
-        <div class='footer-left-items'>
+<div class="footer-container">
+    <div class="footer-wrapper page--width">
+        <div class="footer-left-items">
             {%- if section.settings.image != null -%}
-                <a class='logo-home-link' href='/'>
+                <a class="logo-home-link" href="/">
                     {{ section.settings.image | image_url: width: 100, height: 34 | image_tag }}
                 </a>
             {%- endif -%}
             {% form 'customer' %}
-                <div class='form-email'>
+                <div class="form-email">
                     <input
-                        class='email-input'
-                        type='email'
-                        name='contact[email]'
-                        placeholder='Enter Email Address'
+                        class="email-input"
+                        type="email"
+                        name="contact[email]"
+                        placeholder="Enter Email Address"
                         required
                     >
-                    <input class='submit-input' type='submit' value='Sign up'>
+                    <input class="submit-input" type="submit" value="Sign up">
                 </div>
             {% endform %}
-            <div class='contact-info'>
+            <div class="contact-info">
                 <span>Contact Info</span>
-                <p class='address-info'>17 Princess Road, London, Greater London NW1 8JR, UK</p>
+                <p class="address-info">17 Princess Road, London, Greater London NW1 8JR, UK</p>
             </div>
         </div>
 
         {% for block in section.blocks %}
-            <div class='menu-section'>
+            <div class="menu-section">
                 {% if block.settings.footer_heading != blank %}
-                    <h2 class='list-title'>{{ block.settings.footer_heading }}</h2>
+                    <h2 class="list-title">{{ block.settings.footer_heading }}</h2>
                 {% endif %}
                 {% if block.settings.menu.links != blank %}
-                    <ul class='lists'>
+                    <ul class="lists">
                         {% for link in block.settings.menu.links %}
                             <li>
-                                <a class='lists_link' href='{{ link.url }}'>{{ link.title }}</a>
+                                <a class="lists_link" href="{{ link.url }}">{{ link.title }}</a>
                             </li>
                         {% endfor %}
                     </ul>
@@ -206,26 +210,26 @@
         {% endfor %}
     </div>
 </div>
-<div class='footer-cutout-container'>
-    <div class='footer-cutout-wrapper page--width'>
+<div class="footer-cutout-container">
+    <div class="footer-cutout-wrapper page--width">
         <span>©Webecy - All Rights Reserved</span>
         {% if section.settings['facebook-link']
             or section.settings['instagram-link']
             or section.settings['twitter-link'] != blank
         %}
-            <div class='social-links'>
+            <div class="social-links">
                 {% if section.settings['facebook-link'] != blank %}
-                    <a href='{{ section.settings['facebook-link'] }}'>
+                    <a href="{{ section.settings['facebook-link'] }}">
                         {% render 'icons', icon: 'facebook' %}
                     </a>
                 {% endif %}
                 {% if section.settings['instagram-link'] != blank %}
-                    <a href='{{ section.settings['instagram-link'] }}'>
+                    <a href="{{ section.settings['instagram-link'] }}">
                         {% render 'icons', icon: 'instagram' %}
                     </a>
                 {% endif %}
                 {% if section.settings['twitter-link'] != blank %}
-                    <a href='{{ section.settings['twitter-link'] }}'>
+                    <a href="{{ section.settings['twitter-link'] }}">
                         {% render 'icons', icon: 'twitter' %}
                     </a>
                 {% endif %}
