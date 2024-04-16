@@ -6,10 +6,10 @@
     assign bs = block.settings
 %}
 
-<div class="featured-product">
+<div class="featured-product page--width">
     <h2 class="featured-product__heading">{{ ss.heading }}</h2>
     <div class="swiper featuredSwiper ">
-        <div class="featured-product__body swiper-wrapper page--width">
+        <div class="featured-product__body swiper-wrapper ">
             {% for product in section.settings.collection.products %}
                 <div class="featured-product__product-card swiper-slide">
                     <div class="product-card__product ">
