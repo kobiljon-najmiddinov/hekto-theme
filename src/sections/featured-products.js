@@ -1,5 +1,5 @@
-import "./styles/featured-products.scss";
 import Swiper from "swiper/bundle";
+import "./styles/featured-products.scss";
 import "./styles/swiper.bundle.scss";
 import { onDocumentReady } from "../utils/dom";
 
@@ -20,11 +20,11 @@ const initSwiper = slideElm => {
             slidesPerView: 2,
             spaceBetween: 15,
             slidesPerGroup: 2,
-            slidesPerGroupSkip: 2,
+            slidesPerGroupSkip: 0,
             loop: true,
             loopFillGroupWithBlank: true,
             pagination: {
-                el: ".swiper-pagination",
+                el: ".featured-pagination",
                 clickable: true,
             },
             keyboard: {
@@ -34,9 +34,9 @@ const initSwiper = slideElm => {
                 // when window width is >= 990px
                 990: {
                     spaceBetween: 20,
-                    slidesPerView: 4.2,
+                    slidesPerView: 4,
                     slidesPerGroup: 4,
-                    slidesPerGroupSkip: 4,
+                    slidesPerGroupSkip: 0,
 
                 }
             },

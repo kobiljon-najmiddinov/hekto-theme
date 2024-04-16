@@ -15,11 +15,13 @@ const cacheState = () => {
 
 const initSwiper = slideElm => {
     state.elements.slider.forEach(slides => {
-            slides = new Swiper(".swiper", {
+            slides = new Swiper(".banner-slideshow", {
                 loop: true,
                 pagination: {
-                el: ".swiper-pagination",
-                },
+                el: ".banner-pagination",
+                clickable: true,
+                }
+                
             });
     });
     
