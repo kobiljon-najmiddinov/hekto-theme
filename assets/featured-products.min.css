@@ -27,6 +27,8 @@
   padding: 0.4rem 1.6rem;
   border-radius: 2.5px !important;
   aspect-ratio: 1;
+  border: 0;
+  transform: rotate(0);
 }
 .featured-product .swiper-pagination-bullet:active {
   background-color: var(--color-primary-accent);
