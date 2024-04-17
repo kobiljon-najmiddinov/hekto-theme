@@ -18,10 +18,12 @@
                                 {%- assign aspect_r = product.featured_image.aspect_ratio -%}
                                 {%- assign width = 178 -%}
                                 {%- assign height = width | times: aspect_r -%}
-                                <img
-                                    src="{{ product.featured_image | image_url: width: width, height: height}}"
-                                    alt="{{ product.title }}"
-                                >
+                                {%- assign alt = value -%}
+                                {{
+                                    product.featured_image
+                                    | image_url: width: 400
+                                    | image_tag: width: width, height: height
+                                }}
                             </div>
                             <div class="product__image__hover-icons">
                                 <a class="" href="{{ product.url }}">
