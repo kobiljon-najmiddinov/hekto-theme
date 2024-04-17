@@ -21,8 +21,8 @@
                                 {%- assign alt = product.featured_image.alt | default: product.title -%}
                                 {{
                                     product.featured_image
-                                    | image_url: width: 400
-                                    | image_tag: width: width, height: height, alt: alt
+                                    | image_url: width: 1500
+                                    | image_tag: width: width, height: height, alt: alt, sizes: '50vw'
                                 }}
                             </div>
                             <div class="product__image__hover-icons">
