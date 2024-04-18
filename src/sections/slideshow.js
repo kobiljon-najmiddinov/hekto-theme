@@ -2,6 +2,7 @@
 import Swiper from "swiper/bundle";
 import  "./styles/swiper.bundle.scss";
 import { onDocumentReady } from "../utils/dom";
+import { loadScript } from "../utils/loadScript";
 
 const state = {
     elements: {},
@@ -9,18 +10,19 @@ const state = {
 
 const cacheState = () => {
         state.elements = {
-            slider: document.querySelectorAll(".swiper-wrapper"),
+            slider: document.querySelectorAll(".banner-slideshow"),
         };
 };
 
-const initSwiper = slideElm => {
-    state.elements.slider.forEach(slides => {
-            slides = new Swiper(".banner-slideshow", {
+const initSwiper = () => {
+    state.elements.slider.forEach((slides) => {
+           const swiper = new Swiper(slides, {
                 loop: true,
                 pagination: {
-                el: ".banner-pagination",
-                clickable: true,
+                    el: slides.querySelector(".swiper-pagination"),
+                    clickable: true,
                 }
+                
                 
             });
     });
@@ -30,6 +32,8 @@ const initSwiper = slideElm => {
 const init = () => {
     cacheState();
     initSwiper();
+    if (window.loadedScripts["slideshow"]) return;
+    window.loadedScripts["slideshow"] = true;
 };
 
 onDocumentReady(() => init());

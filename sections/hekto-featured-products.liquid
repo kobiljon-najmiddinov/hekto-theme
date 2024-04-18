@@ -8,17 +8,22 @@
 
 <div class="featured-product page--width">
     <h2 class="featured-product__heading">{{ ss.heading }}</h2>
-    <div class="swiper featuredSwiper ">
+    <div class="swiper featured-swiper ">
         <div class="featured-product__body swiper-wrapper ">
             {% for product in section.settings.collection.products %}
                 <div class="featured-product__product-card swiper-slide">
                     <div class="product-card__product ">
                         <div class="product__image">
-                            <div class="image__background">
-                                <img
-                                    src="{{ product.featured_image | image_url: width: 178, height: 178 }}"
-                                    alt="{{ product.title }}"
-                                >
+                            <div class="image__wrapper image__background">
+                                {%- assign aspect_ratio = product.featured_image.aspect_ratio -%}
+                                {%- assign width = 200 -%}
+                                {%- assign height = width | times: aspect_ratio -%}
+                                {%- assign alt = product.featured_image.alt | default: product.title -%}
+                                {{
+                                    product.featured_image
+                                    | image_url: width: 800
+                                    | image_tag: width: width, height: height, alt: alt, sizes: '50vw'
+                                }}
                             </div>
                             <div class="product__image__hover-icons">
                                 <a class="" href="{{ product.url }}">
