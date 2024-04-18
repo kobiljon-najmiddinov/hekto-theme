@@ -24,10 +24,12 @@
   gap: 2rem;
   margin-top: 3rem;
 }
+.featured-product .swiper-pagination {
+  --swiper-pagination-bottom: -5px;
+}
 .featured-product .swiper-pagination-bullet {
   background-color: #FEBAD7 !important;
   padding: 0.2rem 0.8rem;
-  --swiper-pagination-bottom: -5px;
   border-radius: 5px !important;
   aspect-ratio: 1;
   border: 0;
