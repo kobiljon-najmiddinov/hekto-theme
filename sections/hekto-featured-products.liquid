@@ -19,13 +19,11 @@
                                 {%- assign width = 200 -%}
                                 {%- assign height = width | times: aspect_ratio -%}
                                 {%- assign alt = product.featured_image.alt | default: product.title -%}
-                                <div class="image__content">
-                                    {{
-                                        product.featured_image
-                                        | image_url: width: 800
-                                        | image_tag: width: width, height: height, alt: alt, sizes: '50vw'
-                                    }}
-                                </div>
+                                {{
+                                    product.featured_image
+                                    | image_url: width: 800
+                                    | image_tag: width: width, height: height, alt: alt, sizes: '50vw'
+                                }}
                             </div>
                             <div class="product__image__hover-icons">
                                 <a class="" href="{{ product.url }}">
