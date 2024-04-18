@@ -65,6 +65,10 @@
   left: 0;
   transition: transform 0.2s ease-in;
 }
+.product__image img {
+  width: 100%;
+  object-fit: contain;
+}
 .product__image__hover-icons {
   display: flex;
   gap: 1rem;
