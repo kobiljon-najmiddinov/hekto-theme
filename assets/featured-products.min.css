@@ -52,7 +52,6 @@
 .product__image .image__background {
   background: hsl(228, 38%, 97%);
   position: relative;
-  z-index: -1;
   width: 100%;
   height: 100%;
   top: 0;
