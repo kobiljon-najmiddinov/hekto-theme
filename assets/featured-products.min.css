@@ -59,13 +59,12 @@
   left: 0;
 }
 .product__image .image__content {
-  position: absolute;
+  width: 100%;
   top: 7.5%;
   left: 0;
   transition: transform 0.2s ease-in;
 }
 .product__image img {
-  width: 100%;
   object-fit: contain;
 }
 .product__image__hover-icons {
