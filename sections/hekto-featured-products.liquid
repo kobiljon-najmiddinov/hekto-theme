@@ -16,7 +16,7 @@
                         <div class="product__image">
                             <div class="image__wrapper image__background">
                                 {%- assign aspect_ratio = product.featured_image.aspect_ratio -%}
-                                {%- assign width = 250 -%}
+                                {%- assign width = 200 -%}
                                 {%- assign height = width | times: aspect_ratio -%}
                                 {%- assign alt = product.featured_image.alt | default: product.title -%}
                                 <div class="image__content">
