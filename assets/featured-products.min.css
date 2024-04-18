@@ -59,8 +59,7 @@
   left: 0;
 }
 .product__image .image__content {
-  object-fit: contain;
-  object-position: center;
+  position: absolute;
   top: 7.5%;
   left: 0;
   transition: transform 0.2s ease-in;
