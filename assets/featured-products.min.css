@@ -58,7 +58,7 @@
   left: 0;
   padding-bottom: 120%;
 }
-.product__image__content {
+.product__image .image__content {
   position: absolute;
   width: 100%;
   object-fit: contain;
