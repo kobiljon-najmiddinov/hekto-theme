@@ -60,8 +60,7 @@
 }
 .product__image .image__content {
   max-width: fit-content;
-  top: 7.5%;
-  left: 0;
+  max-height: min-content;
   transition: transform 0.2s ease-in;
 }
 .product__image img {
