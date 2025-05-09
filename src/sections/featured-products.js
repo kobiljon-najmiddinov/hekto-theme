@@ -1,7 +1,8 @@
-import "./styles/featured-products.scss";
 import Swiper from "swiper/bundle";
+import "./styles/featured-products.scss";
 import "./styles/swiper.bundle.scss";
 import { onDocumentReady } from "../utils/dom";
+import { loadScript } from "../utils/loadScript";
 
 const state = {
     elements: {},
@@ -9,22 +10,22 @@ const state = {
 
 const cacheState = () => {
     state.elements = {
-        slider: document.querySelectorAll(".swiper-wrapper"),
+        slider: document.querySelectorAll(".featured-swiper"),
     };
 };
 
 // TODO: Fix pagination for 2 banner slideshows
 const initSwiper = slideElm => {
     state.elements.slider.forEach(slides => {
-        slides = new Swiper(".featuredSwiper", {
+        const swiper = new Swiper(slides, {
             slidesPerView: 2,
             spaceBetween: 15,
-            slidesPerGroup: 2,
-            slidesPerGroupSkip: 2,
+            slidesPerGroup: 1,
+            slidesPerGroupSkip: 0,
             loop: true,
             loopFillGroupWithBlank: true,
             pagination: {
-                el: ".swiper-pagination",
+                el: slides.querySelector(".swiper-pagination"),
                 clickable: true,
             },
             keyboard: {
@@ -34,9 +35,9 @@ const initSwiper = slideElm => {
                 // when window width is >= 990px
                 990: {
                     spaceBetween: 20,
-                    slidesPerView: 4.2,
-                    slidesPerGroup: 4,
-                    slidesPerGroupSkip: 4,
+                    slidesPerView: 4,
+                    slidesPerGroup: 1,
+                    slidesPerGroupSkip: 0,
 
                 }
             },
@@ -48,6 +49,9 @@ const initSwiper = slideElm => {
 const init = () => {
     cacheState();
     initSwiper();
+    // loadScript("featured-products");
+    if (window.loadedScripts["featured-product"]) return;
+    window.loadedScripts["featured-product"] = true;
 };
 
 onDocumentReady(() => init());
